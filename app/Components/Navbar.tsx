@@ -15,7 +15,7 @@ export default function Navbar() {
     <nav className="fixed w-full backdrop-blur-sm z-50 shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-white">repro</Link>
+        <Link href="/" className="text-2xl font-bold text-white">Flik</Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8 items-center">
@@ -26,7 +26,7 @@ export default function Navbar() {
           ))}
           {/* Date & Contact Button */}
           <div className="flex items-center gap-4">
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+            <button className="bg-green-900 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
               Contact Us
             </button>
           </div>

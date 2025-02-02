@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
         </h1>
         <p className="text-xl md:text-2xl mb-6">CREATING SPACES THAT INSPIRE</p>
         <button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
+          className="bg-green-900 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           Make in Workflow
         </button>
