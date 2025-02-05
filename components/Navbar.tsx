@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const menuItems = ["Home", "Products", "Services", "Blog", "Contacts"];
-
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -12,7 +11,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed w-full backdrop-blur-sm z-50 shadow-sm">
+    <nav className="fixed w-full backdrop-blur-sm z-20 shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-white">Flik</Link>
