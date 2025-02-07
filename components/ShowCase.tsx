@@ -4,27 +4,26 @@ import { MoveUpRight } from 'lucide-react';
 
 // Reusable Card component
 const Card = ({ src, title }: { src: string; title: string }) => (
-  <article className="relative pb-4 overflow-hidden rounded-md hover:shadow-lg transition-shadow duration-300">
+  <article className="relative pb-8 overflow-hidden rounded-md hover:shadow-lg transition-shadow duration-300">
     <div className="w-full h-72 md:h-96 lg:h-[450px] overflow-hidden rounded-xl">
       <Image
         src={src}
         alt={title}
-        height={450} // Adjusted height for better visual balance
-        width={900} // Adjusted width for better balance
+        height={450}
+        width={900}
         className="h-full w-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
       />
     </div>
-    <div className="absolute bottom-4 text-black w-full p-4 flex justify-between items-center">
-      <h3 className="sm:text-xl text-sm bg-black text-white rounded-xl p-2 px-4">
+    {/* Title and Button Wrapper */}
+    <div className="absolute bottom-0 left-0 w-full bg-black/60 p-5 flex flex-col items-center gap-3">
+      <h3 className="sm:text-lg text-sm text-white rounded-xl px-4 py-1 text-center w-full">
         {title}
       </h3>
-      <button className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#080918] font-medium text-neutral-200 border-2 transition-all duration-300 hover:w-24">
-        <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100">
+      <button className="group relative inline-flex h-12 min-w-12 items-center justify-center overflow-hidden rounded-full bg-[#080918] font-medium text-neutral-200 border-2 transition-all duration-300 hover:min-w-24 focus:min-w-24">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-200 group-hover:opacity-100 group-focus:opacity-100">
           Visit
         </div>
-        <div className="absolute right-3">
-          <MoveUpRight />
-        </div>
+        <MoveUpRight className="relative transition-all duration-200 group-hover:translate-x-3 group-focus:translate-x-3" />
       </button>
     </div>
   </article>
