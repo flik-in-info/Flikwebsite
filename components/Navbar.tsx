@@ -1,6 +1,9 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import Image from 'next/image';
+import com_logo from "@/images/com_logo.png";
+
 
 const menuItems = ["Home", "Products", "Services", "Blog", "Contacts"];
 export default function Navbar() {
@@ -14,7 +17,16 @@ export default function Navbar() {
     <nav className="fixed w-full backdrop-blur-sm z-20 shadow-sm">
       <div className="container mx-auto flex justify-between items-center px-4 py-4">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-white">Flik</Link>
+        <Link href="/">
+          <Image
+            src={com_logo} // Replace with your logo path
+            alt="Flik Logo"
+            width={45} // Adjust width as needed
+            height={45} // Adjust height as needed
+            className="h-auto w-auto" // Ensures responsiveness
+          />
+        </Link>
+
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8 items-center">
@@ -50,7 +62,7 @@ export default function Navbar() {
               {item}
             </Link>
           ))}
-          <div className="pt-4 border-t">     
+          <div className="pt-4 border-t">
             <button className="w-full bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
               Contact Us
             </button>
