@@ -20,10 +20,15 @@ const Card = ({ src, title }: { src: string; title: string }) => (
         {title}
       </h3>
       <button className="group relative inline-flex h-12 min-w-12 items-center justify-center overflow-hidden rounded-full bg-[#080918] font-medium text-neutral-200 border-2 transition-all duration-300 hover:min-w-24 focus:min-w-24">
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-200 group-hover:opacity-100 group-focus:opacity-100">
+        {/* Default (Icon) */}
+        <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-0 group-focus:opacity-0">
+          <MoveUpRight className="transition-transform duration-200 group-hover:translate-x-3 group-focus:translate-x-3" />
+        </div>
+
+        {/* Hover (Visit Text) */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus:opacity-100">
           Visit
         </div>
-        <MoveUpRight className="relative transition-all duration-200 group-hover:translate-x-3 group-focus:translate-x-3" />
       </button>
     </div>
   </article>
