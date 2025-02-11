@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { MoveUpRight } from 'lucide-react';
+import Card1 from './ui/Card1';
 
 // Reusable Card component
 const Card = ({ src, title }: { src: string; title: string }) => (
