@@ -1,10 +1,9 @@
 'use client';
-import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { MoveUpRight } from 'lucide-react';
 import { Inter, Manrope } from 'next/font/google';
 import Panorama2 from './ui/Panorama2';
+import React from 'react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -53,7 +52,7 @@ interface ShowcaseItemProps {
   index: number;
 }
 
-const ShowcaseItem = memo(({ item, index }: ShowcaseItemProps) => {
+const ShowcaseItem = React.memo(({ item, index }: ShowcaseItemProps) => {
   return (
     <motion.article
       initial={{ y: 50, opacity: 0 }}
@@ -96,6 +95,7 @@ const ShowcaseItem = memo(({ item, index }: ShowcaseItemProps) => {
     </motion.article>
   );
 });
+ShowcaseItem.displayName = 'ShowcaseItem';
 
 export default function Showcase() {
   return (
