@@ -5,7 +5,7 @@ import Image from 'next/image';
 import com_logo from "@/images/com_logo.png";
 
 
-const menuItems = ["Home", "Products", "Services", "Blog", "Contacts"];
+const menuItems = ["Home", "Services", "Showcase", "About Us","Blog"];
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

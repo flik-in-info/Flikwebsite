@@ -22,14 +22,14 @@ const Card = ({ title, children }: { title: string; children: ReactNode }) => {
 };
 
 const StyledWrapper = styled.div`
-  .outer {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    padding: 1px;
-    background: radial-gradient(circle 230px at 0% 0%, #ffffff, #0c0d0d);
-    position: relative;
-  }
+  // .outer {
+  //   width: 100%;
+  //   height: auto;
+  //   border-radius: 10px;
+  //   padding: 1px;
+  //   background: radial-gradient(circle 230px at 0% 0%, #ffffff, #0c0d0d);
+  //   position: relative;
+  // }
   .dot {
     width: 5px;
     aspect-ratio: 1;
@@ -52,18 +52,18 @@ const StyledWrapper = styled.div`
   }
 
   @media (min-width: 768px) {
-    .dot {
-      top: 2%;
-      animation-duration: 6s;
-    }
+    // .dot {
+    //   top: 2%;
+    //   animation-duration: 6s;
+    // }
     
-    @keyframes moveDot {
-      0% { top: 2%; right: 2%; }
-      25% { top: 2%; right: 98%; }
-      50% { top: 98%; right: 98%; }
-      75% { top: 98%; right: 2%; }
-      100% { top: 2%; right: 2%; }
-    }
+    // @keyframes moveDot {
+    //   0% { top: 2%; right: 2%; }
+    //   25% { top: 2%; right: 98%; }
+    //   50% { top: 98%; right: 98%; }
+    //   75% { top: 98%; right: 2%; }
+    //   100% { top: 2%; right: 2%; }
+    // }
   }
 
   .card {
@@ -107,41 +107,41 @@ const StyledWrapper = styled.div`
   background-color: #2c2c2c;
 }
 
-.topl {
-  top: 1%;
-  @media (min-width: 768px) {
-    top: 2%;
-  }
-  left: 5%;
-  width: 90%; /* Ensures it doesn't overflow */
-  height: 1px;
-  background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
-}
+// .topl {
+//   top: 1%;
+//   @media (min-width: 768px) {
+//     top: 2%;
+//   }
+//   left: 5%;
+//   width: 90%; /* Ensures it doesn't overflow */
+//   height: 1px;
+//   background: linear-gradient(90deg, #888888 30%, #1d1f1f 70%);
+// }
 
-.bottoml {
-  bottom: 2%; /* Adjusted from 10% */
-  @media (min-width: 768px) {
-    bottom: 2%;
-  }
-  left: 5%;
-  width: 90%;
-  height: 1px;
-}
+// .bottoml {
+//   bottom: 2%; /* Adjusted from 10% */
+//   @media (min-width: 768px) {
+//     bottom: 2%;
+//   }
+//   left: 5%;
+//   width: 90%;
+//   height: 1px;
+// }
 
-.leftl {
-  left: 2%; /* Adjusted from 10% */
-  top: 5%;
-  width: 1px;
-  height: 90%; /* Adjusted height */
-  background: linear-gradient(180deg, #747474 30%, #222424 70%);
-}
+// .leftl {
+//   left: 2%; /* Adjusted from 10% */
+//   top: 5%;
+//   width: 1px;
+//   height: 90%; /* Adjusted height */
+//   background: linear-gradient(180deg, #747474 30%, #222424 70%);
+// }
 
-.rightl {
-  right: 2%; /* Adjusted from 10% */
-  top: 5%;
-  width: 1px;
-  height: 90%;
-}
+// .rightl {
+//   right: 2%; /* Adjusted from 10% */
+//   top: 5%;
+//   width: 1px;
+//   height: 90%;
+// }
 `;
 
 export default Card;
