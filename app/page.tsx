@@ -8,7 +8,7 @@ import SolutionSection, { Scrolltxt } from "@/components/SolutionSection";
 import { Services } from "@/components/Services";
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Navbar/>
       <HeroSection/>
       <CoverDemo/>
@@ -17,7 +17,6 @@ export default function Home() {
       <Services/>
       <Scrolltxt/>
       <ShowCase/>
-      
     </div>
   );
 }

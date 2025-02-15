@@ -1,17 +1,18 @@
-import React from 'react';
-import Image from 'next/image';
-import { MoveUpRight } from 'lucide-react';
+import React from "react";
+import Image from "next/image";
+import { MoveUpRight } from "lucide-react";
 
 // Reusable Card component
 const Card = ({ src, title }: { src: string; title: string }) => (
-  <article className="relative pb-8 overflow-hidden rounded-md hover:shadow-lg transition-shadow duration-300">
+  <article className="relative w-full pb-8 overflow-hidden rounded-md hover:shadow-lg transition-shadow duration-300">
+
     <div className="w-full h-72 md:h-96 lg:h-[450px] overflow-hidden rounded-xl">
       <Image
         src={src}
         alt={title}
         height={450}
         width={900}
-        className="h-full w-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
+        className="h-full w-full max-w-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
       />
     </div>
     {/* Title and Button Wrapper */}
@@ -37,24 +38,26 @@ const Card = ({ src, title }: { src: string; title: string }) => (
 function ShowCase() {
   const images = [
     {
-      src: 'https://i.pinimg.com/736x/b3/90/eb/b390ebef49e21940461fc6e626f96eb9.jpg', // Image 1
-      title: 'Modern Architecture', // Title for Image 1
+      src: "https://i.pinimg.com/736x/b3/90/eb/b390ebef49e21940461fc6e626f96eb9.jpg", // Image 1
+      title: "Modern Architecture", // Title for Image 1
     },
     {
-      src: 'https://i.pinimg.com/736x/af/ee/77/afee775be378605cc4c606c1e2105159.jpg', // Image 2
-      title: 'Luxury Interiors', // Title for Image 2
+      src: "https://i.pinimg.com/736x/af/ee/77/afee775be378605cc4c606c1e2105159.jpg", // Image 2
+      title: "Luxury Interiors", // Title for Image 2
     },
     {
-      src: 'https://i.pinimg.com/736x/de/10/27/de1027e2dc6ae6eb68d46ccb69d4985f.jpg', // Image 3
-      title: 'Contemporary Design', // Title for Image 3
+      src: "https://i.pinimg.com/736x/de/10/27/de1027e2dc6ae6eb68d46ccb69d4985f.jpg", // Image 3
+      title: "Contemporary Design", // Title for Image 3
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-8 lg:px-16">
-      {images.map((image, index) => (
-        <Card key={index} src={image.src} title={image.title} />
-      ))}
+    <div className="overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-8 lg:px-16">
+        {images.map((image, index) => (
+          <Card key={index} src={image.src} title={image.title} />
+        ))}
+      </div>
     </div>
   );
 }

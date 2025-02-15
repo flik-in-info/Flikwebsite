@@ -5,47 +5,48 @@ import Card from "@/components/ui/Card";
 import BlurText from "./ui/BlurText";
 import TextAnimation from "@/components/ui/Scroll-text";
 import React from "react";
-
+import ShowCase from "./ShowCase";
 const solutions = [
   {
     title: "AI-Powered Optimization",
     description: "Enhance performance with real-time AI-driven adjustments.",
     image:
-      "https://i.pinimg.com/736x/f5/ea/06/f5ea0631219c51b2bc78ecb69b1af76c.jpg",
+      "https://cdn-icons-png.flaticon.com/512/17661/17661363.png",
+    
   },
   {
     title: "Ultra-Responsive Design",
     description: "Experience seamless interactions across all devices.",
     image:
-      "https://i.pinimg.com/736x/31/54/42/3154425838bf85764cec81a466a448f8.jpg",
+      "https://cdn-icons-png.flaticon.com/512/11524/11524065.png",
   },
   {
     title: "Secure & Scalable",
     description:
       "Built with enterprise-level security and infinite scalability.",
     image:
-      "https://i.pinimg.com/236x/8c/89/5d/8c895d68027d0c947c837caf3753ed60.jpg",
+      "https://cdn-icons-png.flaticon.com/512/6964/6964039.png",
   },
   {
     title: "Real-Time Rendering",
     description:
       "Your interactive real-time walkthroughs allow clients to explore designs in 3D, like a virtual tour.",
     image:
-      "https://i.pinimg.com/236x/cb/fa/70/cbfa703ffda38d7d8ef4cbe86941051b.jpg",
+      "https://cdn-icons-png.flaticon.com/512/8467/8467617.png",
   },
   {
     title: "Cloud-Based Accessibility",
     description:
       "Cost-effective & scalable, enabling more professionals to access cutting-edge visualization tools.",
     image:
-      "https://i.pinimg.com/736x/bb/bd/e0/bbbde06fbd009bdc19181e86f031284b.jpg",
+      "https://cdn-icons-png.flaticon.com/512/1281/1281781.png",
   },
   {
     title: "Interactive 3D Walkthroughs",
     description:
       "Improves client understanding and reduces last-minute revisions.",
     image:
-      "https://i.pinimg.com/736x/07/da/a3/07daa3f2599ee112e6964ab0a852da6b.jpg",
+      "https://cdn-icons-png.flaticon.com/512/6750/6750113.png",
   },
 ];
 
@@ -99,13 +100,33 @@ export function Scrolltxt() {
               </clipPath>
             </defs>
           </svg>
-          <div className="flex justify-center mt-8">
-            <div className="w-[280px] sm:w-[300px] md:w-[320px] lg:w-[280px] xl:w-[300px]  bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex justify-center mt-8 gap-4">
+            <div className="w-[280px] sm:w-[300px] md:w-[320px] lg:w-[280px] xl:w-[300px] bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <figure style={{ clipPath: "url(#clip-another2)" }}>
                 <img
                   className="transition-all duration-300 aspect-[4/5] min-h-full align-bottom object-cover hover:scale-105 w-full"
                   src="https://i.pinimg.com/736x/7e/2b/53/7e2b533e992bf7f4569c0fa04566e33a.jpg"
                   alt="Featured visual"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+            <div className="hidden lg:block w-[280px] xl:w-[300px] bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <figure style={{ clipPath: "url(#clip-another2)" }}>
+                <img
+                  className="transition-all duration-300 aspect-[4/5] min-h-full align-bottom object-cover hover:scale-105 w-full"
+                  src="https://i.pinimg.com/236x/1f/ea/53/1fea530813a9792401b14920b12d92d8.jpg"
+                  alt="Featured visual 2"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+            <div className="hidden lg:block w-[280px] xl:w-[300px] bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <figure style={{ clipPath: "url(#clip-another2)" }}>
+                <img
+                  className="transition-all duration-300 aspect-[4/5] min-h-full align-bottom object-cover hover:scale-105 w-full"
+                  src="https://i.pinimg.com/736x/67/da/cf/67dacfcb8dc59dc1b7a0d2c40ace5a37.jpg" 
+                  alt="Featured visual 3"
                   loading="lazy"
                 />
               </figure>
@@ -152,13 +173,39 @@ export function Scrolltxt() {
             </defs>
           </svg>
 
-          <div className="flex justify-center md:justify-end lg:justify-center mt-8 md:mt-0 lg:mt-1 relative z-10">
+          <div className="flex justify-center md:justify-end lg:justify-center gap-4 mt-8 md:mt-0 lg:mt-1 relative z-10">
             <section className="w-[280px] sm:w-[300px] md:w-[320px] lg:w-[280px] xl:w-[300px] bg-white border rounded-lg p-3 sm:p-4 md:p-5">
               <figure className="p-4 sm:p-6 md:p-8 group hover:p-2 sm:hover:p-3 md:hover:p-4 transition-all duration-200 bg-gradient-to-b to-[#022641] from-[#356778] rounded-lg sm:rounded-xl">
                 <div style={{ clipPath: "url(#clip-goey5)" }}>
                   <img
                     className="transition-all duration-300 align-bottom aspect-square object-cover group-hover:scale-110 w-full"
                     src="https://i.pinimg.com/736x/dd/5c/ed/dd5ced3b2549974324f6a4b97f6224de.jpg"
+                    alt="Business solutions"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+            </section>
+
+            <section className="hidden lg:block w-[280px] xl:w-[300px] bg-white border rounded-lg p-3 sm:p-4 md:p-5">
+              <figure className="p-4 sm:p-6 md:p-8 group hover:p-2 sm:hover:p-3 md:hover:p-4 transition-all duration-200 bg-gradient-to-b to-[#022641] from-[#356778] rounded-lg sm:rounded-xl">
+                <div style={{ clipPath: "url(#clip-goey5)" }}>
+                  <img
+                    className="transition-all duration-300 align-bottom aspect-square object-cover group-hover:scale-110 w-full"
+                    src="https://i.pinimg.com/736x/67/da/cf/67dacfcb8dc59dc1b7a0d2c40ace5a37.jpg"
+                    alt="Business solutions"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+            </section>
+
+            <section className="hidden lg:block w-[280px] xl:w-[300px] bg-white border rounded-lg p-3 sm:p-4 md:p-5">
+              <figure className="p-4 sm:p-6 md:p-8 group hover:p-2 sm:hover:p-3 md:hover:p-4 transition-all duration-200 bg-gradient-to-b to-[#022641] from-[#356778] rounded-lg sm:rounded-xl">
+                <div style={{ clipPath: "url(#clip-goey5)" }}>
+                  <img
+                    className="transition-all duration-300 align-bottom aspect-square object-cover group-hover:scale-110 w-full"
+                    src="https://i.pinimg.com/736x/0d/fc/b8/0dfcb8bcda7f7776f1cfa5cd2f00a2b7.jpg"
                     alt="Business solutions"
                     loading="lazy"
                   />
@@ -204,12 +251,29 @@ export function Scrolltxt() {
               </clipPath>
             </defs>
           </svg>
-          <div className="flex justify-center mt-8">
-            <div className="w-[280px] sm:w-[300px] md:w-[320px] lg:w-[280px] xl:w-[300px]  bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="flex justify-center mt-8 gap-8">
+            <div className="w-[280px] sm:w-[300px] md:w-[320px] lg:w-[280px] xl:w-[300px] bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <figure style={{ clipPath: "url(#clip-another3)" }}>
                 <img
                   className="transition-all duration-300 aspect-[4/5] min-h-full align-bottom object-cover hover:scale-105 w-full"
-                  src="https://i.pinimg.com/736x/0d/fc/b8/0dfcb8bcda7f7776f1cfa5cd2f00a2b7.jpg"
+                  src="https://i.pinimg.com/236x/2a/b2/c7/2ab2c7cc7d2061dd4526aa394b7eece5.jpg"
+                  alt=""
+                />
+              </figure>
+            </div>
+            <div className="hidden lg:block w-[280px] xl:w-[300px] bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <figure style={{ clipPath: "url(#clip-another3)" }}>
+                <img
+                  className="transition-all duration-300 aspect-[4/5] min-h-full align-bottom object-cover hover:scale-105 w-full"
+                  src="https://i.pinimg.com/736x/54/6f/c4/546fc47ce972a175039f9b6a9c67670c.jpg"
+                />
+              </figure>
+            </div>
+            <div className="hidden lg:block w-[280px] xl:w-[300px] bg-white border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <figure style={{ clipPath: "url(#clip-another3)" }}>
+                <img
+                  className="transition-all duration-300 aspect-[4/5] min-h-full align-bottom object-cover hover:scale-105 w-full"
+                  src="https://i.pinimg.com/736x/15/ed/28/15ed285e2090d551c6a3d39059d57181.jpg"
                   alt=""
                 />
               </figure>
@@ -257,25 +321,45 @@ export default function SolutionSection() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05, rotateX: 5 }}
-                className="relative p-6 rounded-2xl border border-white/20 shadow-xl bg-white/10 backdrop-blur-md transition-all group hover:shadow-[0px_0px_40px_10px_rgba(255,187,118,0.3)]"
+                className="relative p-6 rounded-2xl border border-transparent shadow-xl backdrop-blur-lg transition-all duration-300 group  flex flex-col items-center"
               >
-                <div className="relative w-full h-48 mb-6 overflow-hidden rounded-xl">
+                <motion.div 
+                  className="relative w-40 h-40 mb-6 overflow-hidden rounded-xl"
+                  whileHover={{ scale: 1.0 }}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <Image
                     src={solution.image}
                     alt={solution.title}
                     layout="fill"
                     objectFit="cover"
-                    className="opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="transform transition-all duration-500 group-hover:scale-100 group-hover:rotate-3"
                   />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-300 transition-colors">
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                </motion.div>
+                <motion.h3 
+                  className="text-xl font-semibold mb-3 transition-all duration-300 group-hover:text-orange-300 group-hover:translate-y-[-5px]"
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   {solution.title}
-                </h3>
-                <p className="text-gray-300 text-sm">{solution.description}</p>
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-300 text-sm text-center transition-all duration-300 group-hover:text-gray-100"
+                  initial={{ x: 20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  {solution.description}
+                </motion.p>
               </motion.div>
             ))}
           </div>
         </div>
+        <ShowCase/>
       </section>
     </Card>
   );

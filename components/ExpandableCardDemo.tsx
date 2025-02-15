@@ -76,11 +76,12 @@ export function ExpandableCardDemo() {
             <motion.div layoutId={`image-${active.title}-${id}`}>
               <Image
                 priority
-                width={200}
-                height={200}
+                width={1920}
+                height={1080}
+                quality={100}
                 src={active.src}
                 alt={active.title}
-                className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-center"
               />
             </motion.div>
 
@@ -131,34 +132,35 @@ export function ExpandableCardDemo() {
         </div>
       ) : null}
     </AnimatePresence>
-    <ul className="max-w-2xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-start gap-4">
-      {cards.map((card, /*index*/) => (
+    <ul className="max-w-full lg:max-w-[85%] mx-auto w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-4 lg:gap-6 px-4 lg:px-8">
+      {cards.map((card) => (
         <motion.div
           layoutId={`card-${card.title}-${id}`}
           key={card.title}
           onClick={() => setActive(card)}
-          className="p-4 flex flex-col  hover:bg-neutral-50 dark:hover:bg-gray-300 rounded-xl cursor-pointer"
+          className="p-4 lg:p-5 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer lg:hover:shadow-lg lg:transition-all lg:duration-300"
         >
-          <div className="flex gap-4 flex-col  w-full">
+          <div className="flex gap-4 flex-col w-full">
             <motion.div layoutId={`image-${card.title}-${id}`}>
               <Image
-                width={100}
-                height={100}
+                width={1280}
+                height={720}
+                quality={100}
                 src={card.src}
                 alt={card.title}
-                className="h-60 w-full  rounded-lg object-cover object-top"
+                className="h-60 lg:h-64 w-full rounded-lg object-cover object-center"
               />
             </motion.div>
-            <div className="flex justify-center items-center flex-col">
+            <div className="flex justify-center items-center flex-col lg:py-2">
               <motion.h3
                 layoutId={`title-${card.title}-${id}`}
-                className="font-bold text-xl text-neutral-800 dark:text-black text-center md:text-left text-base"
+                className="font-bold text-xl text-neutral-800 dark:text-white text-center md:text-left text-base lg:text-lg"
               >
                 {card.title}
               </motion.h3>
               <motion.p
                 layoutId={`description-${card.description}-${id}`}
-                className="text-neutral-600 dark:text-black text-center md:text-left text-base"
+                className="text-neutral-600 dark:text-white text-center md:text-left text-base lg:mt-2"
               >
                 {card.description}
               </motion.p>
@@ -206,9 +208,9 @@ export const CloseIcon = () => {
 
 const cards = [
   {
-    description: "Stand out from your competitors by showing all the benefits of 3D travel",
-    title: "Interactive 3D model",
-    src: "https://i.pinimg.com/736x/03/1a/20/031a205e9c98f897c752a41e563f7fa1.jpg",
+    description: "High-quality static images for marketing, real estate, and presentations.",
+    title: " Photorealistic Rendering",
+    src: "https://i.pinimg.com/736x/61/c9/b8/61c9b83b1842f4dba9d1d8708be2c099.jpg",
     ctaText: "Visit",
     ctaLink:
       "https://i.pinimg.com/736x/03/1a/20/031a205e9c98f897c752a41e563f7fa1.jpg",
@@ -230,9 +232,9 @@ const cards = [
     },
   },
   {
-    description: "Show your users all the details of the project, including virtual walks around the apartment. Give the user the opportunity to independently furnish their future apartment.",
-    title: "Virtual tours",
-    src: "https://i.pinimg.com/236x/8c/63/94/8c6394fec22d0101e19bf114a3fcab13.jpg",
+    description: "Cinematic video tours showcasing the project dynamically.",
+    title: "3D Walkthrough & Animation",
+    src: "https://i.pinimg.com/736x/74/89/4b/74894b30898149ea388bbebd0618fb58.jpg",
     ctaText: "Visit",
     ctaLink:
       "https://i.pinimg.com/236x/8c/63/94/8c6394fec22d0101e19bf114a3fcab13.jpg",
@@ -254,9 +256,9 @@ const cards = [
   },
 
   {
-    description: "Observe user actions and communicate with them by using flik.in",
-    title: "Complex digital platform",
-    src: "https://i.pinimg.com/736x/b5/7d/70/b57d706f54df681fae41623ad8ac2cf3.jpg",
+    description: "Fully interactive experiences for immersive client engagement.",
+    title: "360° Virtual Tours & VR",
+    src: "https://i.pinimg.com/736x/c8/61/e2/c861e223cfcec851345547f62e841337.jpg",
     ctaText: "Visit",
     ctaLink:
       "https://i.pinimg.com/736x/b5/7d/70/b57d706f54df681fae41623ad8ac2cf3.jpg",
@@ -277,9 +279,9 @@ const cards = [
     },
   },
   {
-    description: "Choose the layout style, configure it using basic 3D, and render each view in high quality using Unreal Engine",
-    title: "Interior design",
-    src: "https://i.pinimg.com/236x/d8/b9/4d/d8b94d49a6349fcfc08bf2f6fa956e55.jpg",
+    description: "Unreal Engine or Unity-based interactive models where clients can explore spaces freely.",
+    title: "Real-time Interactive Experiences",
+    src: "https://i.pinimg.com/736x/69/ed/63/69ed63fa941c264d278e4695b294df0c.jpg",
     ctaText: "Visit",
     ctaLink:
       "https://i.pinimg.com/236x/d8/b9/4d/d8b94d49a6349fcfc08bf2f6fa956e55.jpg",
