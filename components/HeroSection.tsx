@@ -24,6 +24,7 @@ const HeroSection: React.FC = () => {
           We’re Revamping The Site
         </h1>
         <p className="text-xl md:text-2xl mb-6">Creating Spaces That Inspire</p>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gradient-to-r from-green-500 to-blue-500">FOR YOUR WEB-SITE CONTACT ROSHAN</h1>
         <button
           className="bg-green-900 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
         >

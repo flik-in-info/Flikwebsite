@@ -5,7 +5,6 @@ import Card from "@/components/ui/Card";
 import BlurText from "./ui/BlurText";
 import TextAnimation from "@/components/ui/Scroll-text";
 import React from "react";
-import ShowCase from "./ShowCase";
 const solutions = [
   {
     title: "AI-Powered Optimization",
@@ -359,7 +358,6 @@ export default function SolutionSection() {
             ))}
           </div>
         </div>
-        <ShowCase/>
       </section>
     </Card>
   );
