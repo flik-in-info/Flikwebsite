@@ -6,6 +6,7 @@ import ShowCase from "@/components/ShowCase";
 import Intro from "@/components/Intro";
 import SolutionSection, { Scrolltxt } from "@/components/SolutionSection";
 import { Services } from "@/components/Services";
+import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div className="overflow-hidden">
@@ -14,9 +15,11 @@ export default function Home() {
       <CoverDemo/>
       <Intro/>
       <SolutionSection/>
+      <ShowCase/>
       <Services/>
       <Scrolltxt/>
-      <ShowCase/>
+      <Footer/>
+      
     </div>
   );
 }
