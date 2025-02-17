@@ -15,8 +15,13 @@ export default function Home() {
       <CoverDemo/>
       <Intro/>
       <SolutionSection/>
-      <ShowCase/>
-      <Services/>
+      <div id="showcase">
+        <ShowCase/>
+      </div>
+      
+      <div id="services">
+        <Services/>
+      </div>
       <Scrolltxt/>
       <Footer/>
       
