@@ -1,3 +1,15 @@
+// {menuItems.map((item) => (
+//   <motion.div
+//     key={item.name}
+//     whileHover={{ scale: 1.1, rotate: [0, 3, -3, 0] }}
+//     transition={{ duration: 0.3 }}
+//   >
+//     {/* Update href to link to the corresponding section or page */}
+//     <Link href={item.target === "about" ? "/about" : `#${item.target}`} className="hover:text-gray-600 transition text-white">
+//       {item.name}
+//     </Link>
+//   </motion.div>
+
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
@@ -10,7 +22,7 @@ const menuItems = [
   { name: "Home", target: "home" },          // Target: home section
   { name: "Services", target: "services" },   // Target: services section
   { name: "Showcase", target: "showcase" },   // Target: showcase section
-  { name: "About Us", target: "about-us" }    // Target: about-us section
+  { name: "About Us", target: "about",href:"/about" },    // Target: about us page
 ];
 
 export default function Navbar() {
@@ -44,7 +56,7 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
             >
               {/* Update href to link to the corresponding section by ID */}
-              <Link href={`#${item.target}`} className="hover:text-gray-600 transition text-white">
+              <Link href={item.target === "about" ? "/about" : `#${item.target}`} className="hover:text-gray-600 transition text-white">
                 {item.name}
               </Link>
             </motion.div>
@@ -75,7 +87,7 @@ export default function Navbar() {
       <div className={`md:hidden transition-all duration-300 ${isMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}>
         <div className="bg-[#ffffff] p-4 space-y-4">
           {menuItems.map((item) => (
-            <Link key={item.name} href={`#${item.target}`} className="block py-2 hover:text-gray-600">
+            <Link key={item.name} href={item.target === "about" ? "/about" : `#${item.target}`} className="block py-2 hover:text-gray-600">
               {item.name}
             </Link>
           ))}

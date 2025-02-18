@@ -1,14 +1,57 @@
 'use client';
 
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
 
-const ContactPage = () => {
-  const buttonStyle = 'p-3 rounded-full text-white text-xl flex items-center justify-center w-12 h-12 backdrop-blur-md bg-opacity-60';
-  const inputField = 'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black backdrop-blur-md bg-white bg-opacity-60';
+const ContactPage: React.FC = () => {
+  const buttonStyle =
+    'p-3 rounded-full text-white text-xl flex items-center justify-center w-12 h-12 backdrop-blur-md bg-opacity-60';
+  const inputField =
+    'w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black backdrop-blur-md bg-white bg-opacity-60';
+
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    industry: '',
+    solution: '',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  // Handle input change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        'service_a51ay0i', // Replace with your Email.js Service ID
+        'template_v7bquse', // Replace with your Email.js Template ID
+        formData,
+        'uCioExiIAZTh2ekXF' // Replace with your Email.js Public Key
+      );
+      setMessage('Message sent successfully!');
+      setFormData({ name: '', phone: '', email: '', industry: '', solution: '', message: '' });
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setMessage('Failed to send message. Try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div 
+    <div
       className="flex flex-col lg:flex-row items-center justify-center min-h-screen 
                  bg-cover bg-center md:bg-contain text-white px-4 py-12 lg:px-48 gap-12"
       style={{ backgroundImage: "url('https://i.pinimg.com/736x/a2/3f/31/a23f31f28e6704de60a2e506614dd653.jpg')" }}
@@ -35,34 +78,36 @@ const ContactPage = () => {
           </a>
         </div>
       </div>
-      
+
       {/* Right Side - Contact Form */}
       <div className="lg:w-3/5 p-8 sm:p-10 lg:p-12 rounded-lg shadow-lg text-black max-w-2xl w-full backdrop-blur-md bg-white bg-opacity-60">
-        <form className="space-y-4">
-          <input type="text" name="name" placeholder="Your Name" className={inputField} />
-          <input type="tel" name="phone" placeholder="Your Phone" className={inputField} />
-          <input type="email" name="email" placeholder="Your Email" className={inputField} />
-          <select name="industry" className={inputField}>
-            <option>Select Your Industry</option>
-            <option>Technology</option>
-            <option>Healthcare</option>
-            <option>Finance</option>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input type="text" name="name" placeholder="Your Name" className={inputField} value={formData.name} onChange={handleChange} required />
+          <input type="tel" name="phone" placeholder="Your Phone" className={inputField} value={formData.phone} onChange={handleChange} required />
+          <input type="email" name="email" placeholder="Your Email" className={inputField} value={formData.email} onChange={handleChange} required />
+          
+          <select name="solution" className={inputField} value={formData.solution} onChange={handleChange} required>
+            <option value="">Select Your Solution</option>
+            <option>Walkthrough</option>
+            <option>3D Tour</option>
+            <option>Archviz Application</option>
+            <option>Other</option>
           </select>
-          <select name="solution" className={inputField}>
-            <option>Select Your Solution</option>
-            <option>Web Development</option>
-            <option>App Development</option>
-            <option>AI & Automation</option>
-          </select>
-          <textarea name="message" placeholder="Your Message" className={inputField}></textarea>
+          <textarea name="message" placeholder="Your Message" className={inputField} value={formData.message} onChange={handleChange} required></textarea>
+          
           <motion.button 
+            type="submit"
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }} 
             className="w-full border-2 border-[#3d7069] bg-[#3d7069] text-white py-3 rounded-lg shadow-md 
                        hover:bg-[#071919] hover:text-xl transition backdrop-blur-md bg-opacity-60"
+            disabled={isSubmitting}
           >
-            Submit Now
+            {isSubmitting ? 'Sending...' : 'Submit Now'}
           </motion.button>
+
+          {/* Success or Error Message */}
+          {message && <p className="text-center mt-4 text-lg">{message}</p>}
         </form>
       </div>
     </div>
