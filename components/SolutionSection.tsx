@@ -306,14 +306,16 @@ export default function SolutionSection() {
           },
         ]}
         text="Our Premium Solutions"
-        delay={150}
+        delay={100}
         animateBy="words"
         direction="top"
         onAnimationComplete={handleAnimationComplete}
         className="mb-8 text-center pt-4 font-bold text-5xl bg-gradient-to-r from-white via-gray-400 to-black bg-clip-text"
       />
+      
 
       <section className="relative w-full py-10 px-4 md:px-8 lg:px-16 bg-transparent text-white">
+      <p className="text-center text-lg lg:text-3xl ">At Flik, we bring cutting-edge technology to architectural visualization, ensuring high performance, seamless interaction, and top-tier security. Our premium solutions are designed to enhance your workflow, improve client engagement, and provide unparalleled efficiency.</p>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {solutions.map((solution, index) => (

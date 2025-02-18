@@ -211,21 +211,13 @@ const cards = [
     description: "High-quality static images for marketing, real estate, and presentations.",
     title: " Photorealistic Rendering",
     src: "https://i.pinimg.com/736x/61/c9/b8/61c9b83b1842f4dba9d1d8708be2c099.jpg",
-    ctaText: "Visit",
+    ctaText: "Get in Touch",
     ctaLink:
-      "https://i.pinimg.com/736x/03/1a/20/031a205e9c98f897c752a41e563f7fa1.jpg",
+      "https://flik.in/contact",
     content: () => {
       return (
         <p>
-          Lana Del Rey, an iconic American singer-songwriter, is celebrated for
-          her melancholic and cinematic music style. Born Elizabeth Woolridge
-          Grant in New York City, she has captivated audiences worldwide with
-          her haunting voice and introspective lyrics. <br /> <br /> Her songs
-          often explore themes of tragic romance, glamour, and melancholia,
-          drawing inspiration from both contemporary and vintage pop culture.
-          With a career that has seen numerous critically acclaimed albums, Lana
-          Del Rey has established herself as a unique and influential figure in
-          the music industry, earning a dedicated fan base and numerous
+          At Flik, we bring architectural designs to life with high-quality photorealistic rendering, creating visually stunning images that showcase every detail with precision. Whether for real estate, marketing, or client presentations, our renders provide a true-to-life representation of spaces, materials, and lighting. With advanced rendering techniques and cutting-edge software, we ensure that each image captures the essence of your design, making it easier for clients to visualize the final project before construction begins. <br /> <br /> Our photorealistic renders help architects, designers, and developers communicate their vision effectively, reducing uncertainties and speeding up decision-making. By emphasizing textures, natural lighting, and environmental effects, we create immersive visuals that evoke emotions and leave a lasting impression. Whether you need high-resolution stills for brochures, website portfolios, or investor presentations, our expertly crafted renders elevate your project’s visual appeal, ensuring it stands out in a competitive market.s
           accolades.
         </p>
       );
@@ -235,21 +227,13 @@ const cards = [
     description: "Cinematic video tours showcasing the project dynamically.",
     title: "3D Walkthrough & Animation",
     src: "https://i.pinimg.com/736x/74/89/4b/74894b30898149ea388bbebd0618fb58.jpg",
-    ctaText: "Visit",
+    ctaText: "Get in Touch",
     ctaLink:
-      "https://i.pinimg.com/236x/8c/63/94/8c6394fec22d0101e19bf114a3fcab13.jpg",
+      "https://flik.in/contact",
     content: () => {
       return (
         <p>
-          Babu Maan, a legendary Punjabi singer, is renowned for his soulful
-          voice and profound lyrics that resonate deeply with his audience. Born
-          in the village of Khant Maanpur in Punjab, India, he has become a
-          cultural icon in the Punjabi music industry. <br /> <br /> His songs
-          often reflect the struggles and triumphs of everyday life, capturing
-          the essence of Punjabi culture and traditions. With a career spanning
-          over two decades, Babu Maan has released numerous hit albums and
-          singles that have garnered him a massive fan following both in India
-          and abroad.
+          Our 3D walkthroughs and animations bring architectural projects to life with cinematic video tours that showcase every detail dynamically. By simulating real-world lighting, materials, and movement, we create engaging visual experiences that help clients explore spaces before they are built. <br /> <br /> Ideal for presentations, marketing, and real estate, these animations provide a seamless virtual tour, making complex designs easy to understand. Whether it’s a residential property, commercial space, or large-scale development, our high-quality animations enhance storytelling and leave a lasting impression.
         </p>
       );
     },
@@ -259,9 +243,9 @@ const cards = [
     description: "Fully interactive experiences for immersive client engagement.",
     title: "360° Virtual Tours & VR",
     src: "https://i.pinimg.com/736x/c8/61/e2/c861e223cfcec851345547f62e841337.jpg",
-    ctaText: "Visit",
+    ctaText: "Get in Touch",
     ctaLink:
-      "https://i.pinimg.com/736x/b5/7d/70/b57d706f54df681fae41623ad8ac2cf3.jpg",
+      "https://flik.in/contact",
     content: () => {
       return (
         <p>
@@ -282,21 +266,13 @@ const cards = [
     description: "Unreal Engine or Unity-based interactive models where clients can explore spaces freely.",
     title: "Real-time Interactive Experiences",
     src: "https://i.pinimg.com/736x/69/ed/63/69ed63fa941c264d278e4695b294df0c.jpg",
-    ctaText: "Visit",
+    ctaText: "Get in Touch",
     ctaLink:
-      "https://i.pinimg.com/236x/d8/b9/4d/d8b94d49a6349fcfc08bf2f6fa956e55.jpg",
+      "https://flik.in/contact",
     content: () => {
       return (
         <p>
-          Himesh Reshammiya, a renowned Indian music composer, singer, and
-          actor, is celebrated for his distinctive voice and innovative
-          compositions. Born in Mumbai, India, he has become a prominent figure
-          in the Bollywood music industry. <br /> <br /> His songs often feature
-          a blend of contemporary and traditional Indian music, capturing the
-          essence of modern Bollywood soundtracks. With a career spanning over
-          two decades, Himesh Reshammiya has released numerous hit albums and
-          singles that have garnered him a massive fan following both in India
-          and abroad.
+          Ideal for presentations, marketing, and real estate, our photorealistic renderings transform concepts into stunning visuals, making complex designs easy to understand. These high-resolution images capture every detail with precision, showcasing textures, lighting, and materials realistically.<br /> <br /> Whether it’s a residential property, commercial space, or large-scale development, our renderings help clients visualize projects before construction begins. By enhancing presentations and marketing materials, they create a powerful impact, ensuring a compelling and immersive experience.
         </p>
       );
     },

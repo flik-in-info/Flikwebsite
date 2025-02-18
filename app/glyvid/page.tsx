@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>vid</div>
+    <div><h1 className='text-6xl font-bold text-center mt-11'>Video Gallery</h1></div>
   )
 }
 

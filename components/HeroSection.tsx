@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const HeroSection: React.FC = () => {
@@ -28,7 +29,9 @@ const HeroSection: React.FC = () => {
         <button
           className="bg-green-900 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
-          Explore Our Workflow
+          <Link href="#showcase">
+            Explore Our Workflow
+          </Link>
         </button>
       </div>
     </section>

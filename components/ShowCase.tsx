@@ -12,6 +12,17 @@ const ShowCase = () => {
     <h1 className="text-5xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-center mt-10">
           Visual <AuroraText>Showcase</AuroraText>
         </h1>
+        <h1 className="text-2xl font-bold tracking-tighter md:text-2xl lg:text-4xl text-center mt-10">Our Showcase – Experience Architectural Excellence</h1>
+        <p className="text-center mt-10 text-lg lg:text-3xl">
+  At <strong>Flik</strong>, we bring architecture to life through cutting-edge visualization techniques. Explore our portfolio and immerse yourself in stunning, lifelike experiences.
+</p>
+<h4 className="text-center mt-10 lg:text-3xl hidden md:block">
+  Step into the world of <strong>Flik</strong>, where creativity meets precision. Our <strong>Photo Gallery</strong> showcases breathtaking high-resolution renders, capturing every intricate detail with stunning realism. The <strong>Video Gallery</strong> takes you on cinematic walkthroughs, offering a dynamic and immersive perspective of architectural spaces. For a truly interactive experience, our <strong>Panorama Section</strong> allows you to explore environments in full 360°, making you feel as if you are standing right inside the design.  
+  <br /><br />
+  Experience architectural visualization like never before—crafted with passion, innovation, and an unwavering commitment to excellence.
+</h4>
+
+    
     <StyledContainer>
       <div className="content">
         <div className="gallery-container flex justify-center items-center">
@@ -34,6 +45,7 @@ const ShowCase = () => {
         />
       </div>
     </StyledContainer>
+
     </>
   );
 };
@@ -92,7 +104,7 @@ const PhotoGallery = () => {
         className="card"
         style={{
           backgroundImage:
-            "url('https://i.pinimg.com/236x/c9/5b/de/c95bde62b2936a56c9edb7f560d628f1.jpg')",
+            "url('https://i.pinimg.com/736x/8f/cc/dc/8fccdca8101e6689147fd2c5a3ea99e2.jpg')",
         }}
       >
         <div className="details">
@@ -101,7 +113,7 @@ const PhotoGallery = () => {
             Explore our photo gallery showcasing stunning visuals and creative
             designs.
           </div>
-          <div className="button" onClick={() => window.open('https://flik.in', '_blank')}>
+          <div className="button" onClick={() => window.open('https://flik.in/glyimg', '_blank')}>
             <Button1 text="View Gallery"/>
           </div>
         </div>
@@ -117,7 +129,7 @@ const VideoGallery = () => {
         className="card"
         style={{
           backgroundImage:
-            "url('https://i.pinimg.com/236x/5a/cd/a3/5acda39053aeaae70a0db3de3213b4b8.jpg",
+            "url('https://i.pinimg.com/736x/04/0c/da/040cdaa8cd7cb8eb2bd1731cd67e3529.jpg",
         }}
       >
         <div className="details">
@@ -126,7 +138,7 @@ const VideoGallery = () => {
             Discover our collection of high-quality videos showcasing creativity
             and innovation.
           </div>
-          <div className="button" onClick={() => window.open('https://flik.in', '_blank')}>
+          <div className="button" onClick={() => window.open('https://flik.in/glyvid', '_blank')}>
             <Button1 text="View Videos"/>
           </div>
         </div>
@@ -142,7 +154,7 @@ const Panorama = () => {
         className="card"
         style={{
           backgroundImage:
-            "url('https://i.pinimg.com/236x/9f/ba/65/9fba659544994762fd44c1f3b32fbf19.jpg",
+            "url('https://i.pinimg.com/736x/09/59/98/095998c1541e85b669e5fcd3d9532c0a.jpg",
         }}
       >
         <div className="details">
@@ -150,7 +162,7 @@ const Panorama = () => {
           <div className="cardText">
             Experience breathtaking panoramic views and immersive environments.
           </div>
-          <div className="button" onClick={() => window.open('https://flik.in', '_blank')}>
+          <div className="button" onClick={() => window.open('https://flik.in/glypan ', '_blank')}>
             <Button1 text="View Panorama"/>
           </div>
         </div>
