@@ -1,4 +1,4 @@
-"use client"; // Required for Next.js 13+ in the app directory
+"use client"
 
 import * as THREE from "three";
 import { useEffect, useRef } from "react";
