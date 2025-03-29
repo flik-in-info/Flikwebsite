@@ -138,7 +138,7 @@ const VideoGallery = () => {
             Discover our collection of high-quality videos showcasing creativity
             and innovation.
           </div>
-          <div className="button" onClick={() => window.open('https://flik.in/glyvid', '_blank')}>
+          <div className="button" >
             <Button1 text="View Videos"/>
           </div>
         </div>
@@ -215,7 +215,7 @@ const StyledWrapper = styled.div`
     gap: 5px;
     transform: translateY(70%); /* Move it up */
     transition: all 0.5s ease;
-    background: rgba(0, 0, 0, 0.6); /* Optional: Darken text area */
+    background: rgba(0, 0, 0, 0.9); /* Optional: Darken text area */
     padding: 10px;
     border-radius: 5px;
   }

@@ -25,17 +25,17 @@ const showcaseItems = [
   },
   {
     id: "02",
-    img: "https://i.pinimg.com/736x/43/39/04/43390448b37ddb3f552f4925a03a3cbc.jpg",
+    img: "https://i.pinimg.com/736x/d0/7e/b8/d07eb8dcf110cfc21126b8d683629d47.jpg",
     title: "Surrounding information",
   },
   {
     id: "03",
-    video: "https://files.catbox.moe/c34fyr.mp4",
+    video: "https://files.catbox.moe/1bbw0p.mp4",
     title: "Archviz Application",
   },
   {
     id: "04",
-    img: "https://i.pinimg.com/736x/81/b1/a7/81b1a70f8b01b0f74f4f6de9804cd2d4.jpg",
+    img: "https://i.pinimg.com/736x/18/ad/38/18ad38424ece5627f028cd2d211a38d0.jpg",
     title: "Real Time Rendering",
   },
 ];

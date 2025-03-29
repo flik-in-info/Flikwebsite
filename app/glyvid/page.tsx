@@ -1,69 +1,74 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Client, Storage } from "appwrite";
+import { useState } from "react";
 
-const APPWRITE_ENDPOINT = "https://cloud.appwrite.io/v1";
-const PROJECT_ID = "67b62ed30029ad7318f3";
-const BUCKET_ID = "67b6345f003582f36cc6";
+const videoLinks = [
+  "https://files.catbox.moe/jo5r7f.mp4",
+  "https://files.catbox.moe/jo5r7f.mp4",
+  "https://files.catbox.moe/jo5r7f.mp4",
+  "https://files.catbox.moe/jo5r7f.mp4",
+];
 
-const GlyVid = () => {
-  const [videos, setVideos] = useState<{ id: string; preview: string; url: string }[]>([]);
-  const client = new Client();
-  const storage = new Storage(client);
-
-  client.setEndpoint(APPWRITE_ENDPOINT).setProject(PROJECT_ID);
-
-  useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        const files = await storage.listFiles(BUCKET_ID);
-
-        const videoData = files.files
-          .filter(file => file.mimeType.startsWith("video"))
-          .map(file => ({
-            id: file.$id,
-            preview: storage.getFilePreview(BUCKET_ID, file.$id, 640, 360),
-            url: storage.getFileView(BUCKET_ID, file.$id)
-          }));
-
-        setVideos(videoData);
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-      }
-    };
-
-    fetchVideos();
-  }, []);
-
-  const openVideoInNewTab = (videoUrl: string) => {
-    window.open(videoUrl, "_blank");
-  };
+export default function VideoGallery() {
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   return (
-    <div className="relative">
-      {/* Video Gallery */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {videos.length > 0 ? (
-          videos.map(video => (
-            <div 
-              key={video.id} 
-              className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105"
-              onClick={() => openVideoInNewTab(video.url)}
+    <div className="w-full min-h-screen bg-gray-900 p-4 text-white">
+      {/* Heading and Description */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl font-bold text-green-500">
+          Flik - Bringing Ideas to Life
+        </h2>
+        <p className="text-lg sm:text-xl text-gray-300 mt-2 max-w-2xl mx-auto">
+          At Flik, we capture creativity, innovation, and craftsmanship in every
+          project we showcase. Explore our collection to see how we bring ideas
+          to life with passion and precision
+        </p>
+      </div>
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-20"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <div
+            className="p-6 rounded-lg w-[90vw] max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              key={selectedVideo}
+              src={selectedVideo}
+              controls
+              autoPlay
+              className="w-full h-auto max-h-[100vh] rounded-lg"
+            />
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute m-4 top-2 right-2 text-white text-xl bg-green-600 px-3 py-1 rounded z-30"
             >
-              <img 
-                src={video.preview} 
-                alt="Video thumbnail" 
-                className="w-full aspect-video object-cover rounded-md"
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Video Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4">
+        {videoLinks.map((video, index) => (
+          <div key={index} className="relative group cursor-pointer">
+            <div className="w-full h-40 md:h-48 lg:h-56 xl:h-64 overflow-hidden rounded-lg shadow-lg">
+              <video
+                src={video}
+                className="w-full h-full object-cover"
+                preload="metadata"
+                muted
+                onClick={() => setSelectedVideo(video)}
               />
             </div>
-          ))
-        ) : (
-          <p className="text-center col-span-full text-gray-500">No videos found.</p>
-        )}
+          </div>
+        ))}
       </div>
     </div>
   );
-};
-
-export default GlyVid;
+}

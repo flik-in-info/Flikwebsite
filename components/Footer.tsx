@@ -14,9 +14,9 @@ const Footer = () => {
         {/* Button */}
         <div className="mt-6">
         <Link href="/contact">
-          <button className="relative px-6 py-3 bg-black text-white rounded-lg text-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.6)]">
+          <button className="relative px-6 py-3 bg-green-500 text-white rounded-lg text-lg font-medium transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.6)]">
             Contact Us
-            <span className="absolute inset-0 rounded-lg bg-gradient-to-r from-pink-500 to-indigo-500 blur-md opacity-50"></span>
+            
           </button>
           </Link>
         </div>
@@ -43,7 +43,7 @@ const Footer = () => {
         <div className="mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
           {/* Logo */}
           <div className="font-bold text-lg">
-            <span className="text-green-500">/</span>HASTOK
+            <span className="text-green-500"></span>HASTOK ENTERPRISE PVT. LTD.
           </div>
 
           {/* Copyright & Links */}

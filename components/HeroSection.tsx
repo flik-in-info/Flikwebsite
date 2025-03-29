@@ -21,11 +21,12 @@ const HeroSection: React.FC = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-xl">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          We’re Revamping The Site
+        <h1 className="text-4xl md:text-6xl font-bold mb-10">
+        Dream Big With
+          <span className="text-green-700 bg-white bg-opacity-5"><p className="">FLIK</p></span>
         </h1>
         <p className="text-xl md:text-2xl mb-6">Creating Spaces That Inspire</p>
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gradient-to-r from-green-500 to-blue-500">FOR WEB INQUIRY  ROSHAN@FLIK.IN</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gradient-to-r from-green-500 to-blue-500">Dive Into World Of Exprience</h1>
         <button
           className="bg-green-900 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
