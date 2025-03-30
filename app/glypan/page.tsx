@@ -11,19 +11,19 @@ export default function PanoramaShowcase() {
       id: 1,
       title: "Panorama 1",
       link: "https://www.coohom.com/pub/tool/panorama/aiwalking?obsPlanId=3FO3JKGLSKGB&uri=%2Fpub%2Fsaas%2Fapps%2Fproject%2Fdetail%2F3FO3JKGLSKGB%3Fuid%3D3FO4L57VAC17%26fromTool%3Dtrue&locale=en_US",
-      preview: "https://www.coohom.com/pub/tool/panorama/preview1.jpg"
+      preview: "https://i.pinimg.com/736x/fa/76/62/fa7662fb8721a4fe08b003cc94155bc8.jpg"
     },
     {
       id: 2,
       title: "Panorama 2",
       link: "https://1bhk.flik.in/",
-      preview: "https://www.coohom.com/pub/tool/panorama/preview2.jpg"
+      preview: "https://i.pinimg.com/736x/20/f2/d4/20f2d465442fd574c3d37240231fed9f.jpg"
     },
     {
       id: 3,
       title: "Panorama 3",
       link: "https://www.coohom.com/pub/modelo/viewer/preview/3FO3JKGLSKGB",
-      preview: "https://www.coohom.com/pub/tool/panorama/preview3.jpg"
+      preview: "https://i.pinimg.com/736x/b7/b9/e0/b7b9e03d33ed285c20e5357322762a1a.jpg"
     }
   ];
 
