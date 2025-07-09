@@ -1,18 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: [
-      'files.catbox.moe',
-      'i.pinimg.com',
-      'source.unsplash.com',
-      'cdn-icons-png.flaticon.com'
-    ],
-    
+    domains: ['source.unsplash.com', 'readdy.ai'],
+    unoptimized: process.env.NODE_ENV === 'development',
   },
-  compiler: {
-    styledComponents: true,
-  },
+  reactStrictMode: true,
 };
 
 export default nextConfig;
