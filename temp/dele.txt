@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-this is master branch
-=======
-this is the dev branch
->>>>>>> dev
