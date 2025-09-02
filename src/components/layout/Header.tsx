@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ShineEffect from './ShineEffect';
+import ShineEffect from '@/components/ShineEffect';
 import Image from 'next/image';
 
 interface HeaderProps {
@@ -9,7 +9,7 @@ interface HeaderProps {
   onMouseLeave: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
+export const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
   const [currentTime, setCurrentTime] = useState<Date>(() => new Date());
 
   useEffect(() => {

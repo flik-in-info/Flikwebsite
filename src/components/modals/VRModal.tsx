@@ -13,7 +13,7 @@ interface VRModalProps {
   setZoom: (zoom: number) => void;
 }
 
-const VRModal: React.FC<VRModalProps> = ({
+export const VRModal: React.FC<VRModalProps> = ({
   showVRModal,
   setShowVRModal,
   setPanoramaPosition,
