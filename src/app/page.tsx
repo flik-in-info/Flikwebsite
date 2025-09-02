@@ -88,12 +88,12 @@ export default function Home() {
     const detectDevice = () => {
       const userAgent = navigator.userAgent;
       const screenWidth = window.innerWidth;
-      
+
       // Check if device is mobile or tablet
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      const isTablet = /iPad|Android(?=.*\bTablet\b)/i.test(userAgent) || 
-                      (screenWidth >= 768 && screenWidth <= 1024 && isMobile);
-      
+      const isTablet = /iPad|Android(?=.*\bTablet\b)/i.test(userAgent) ||
+        (screenWidth >= 768 && screenWidth <= 1024 && isMobile);
+
       if (isMobile && !isTablet) {
         setDeviceType('mobile');
         setCursorVisible(false); // Hide cursor on mobile
@@ -108,7 +108,7 @@ export default function Home() {
 
     detectDevice();
     window.addEventListener('resize', detectDevice);
-    
+
     return () => {
       window.removeEventListener('resize', detectDevice);
     };
@@ -135,12 +135,12 @@ export default function Home() {
   const handleIconClick = (index: number | null) => {
     // Clear hover state when clicking
     setHoveredIcon(null);
-    
+
     // Only navigate if clicking on a valid section
     if (index !== null) {
       // Set clicked icon to the selected index
       setClickedIcon(index);
-      
+
       // Scroll to the corresponding section
       const sections = ["home", "portfolio", "services", "about", "contact", "testimonials"];
       if (index < sections.length) {
@@ -157,7 +157,7 @@ export default function Home() {
   const getCurrentSection = () => {
     const sections = ["home", "portfolio", "services", "about", "contact", "testimonials"];
     const scrollPosition = window.scrollY + window.innerHeight / 2;
-    
+
     for (let i = sections.length - 1; i >= 0; i--) {
       const section = document.getElementById(sections[i]);
       if (section && section.offsetTop <= scrollPosition) {
@@ -187,8 +187,8 @@ export default function Home() {
     // Don't interfere if user is typing in an input field
     const activeElement = document.activeElement;
     if (activeElement && (
-      activeElement.tagName === 'INPUT' || 
-      activeElement.tagName === 'TEXTAREA' || 
+      activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'TEXTAREA' ||
       activeElement.getAttribute('contenteditable') === 'true'
     )) {
       return;
@@ -213,12 +213,12 @@ export default function Home() {
     const handleScroll = () => {
       const current = getCurrentSection();
       setCurrentSection(current);
-      
+
       // If user scrolled to a different section than the clicked one, clear the clicked state
       if (clickedIcon !== null && clickedIcon !== current) {
         setClickedIcon(null);
       }
-      
+
       // Only clear hover state if no icon is manually clicked
       if (clickedIcon === null) {
         setHoveredIcon(null);
@@ -266,7 +266,7 @@ export default function Home() {
               <iframe
                 src="https://player.vimeo.com/video/1099624247?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;controls=0&amp;background=1"
                 className="opacity-80"
-                style={{ 
+                style={{
                   position: 'absolute',
                   top: '50%',
                   left: '50%',
@@ -283,7 +283,7 @@ export default function Home() {
               ></iframe>
               <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-emerald-900/20"></div>
             </div>
-            
+
             {/* Content with higher z-index */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full py-10 md:py-16">
               <motion.div
@@ -365,6 +365,23 @@ export default function Home() {
                 <div className="text-xs text-white/70">Experience Available</div>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-12">
+            <motion.button
+              className="glass-button px-8 py-3 bg-emerald-500/20 hover:bg-emerald-500/30"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              onMouseEnter={() => handleMouseEnter("button")}
+              onMouseLeave={handleMouseLeave}
+            >
+              Share Your Experience
+            </motion.button>
           </div>
         </motion.section>
       ),
@@ -813,14 +830,14 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
               <div className="about-card p-0 overflow-hidden relative visual-showcase-item" onMouseEnter={() => handleMouseEnter("button")} onMouseLeave={handleMouseLeave}>
-                <div 
-                  className="relative w-full h-48 cursor-pointer visual-showcase-item" 
+                <div
+                  className="relative w-full h-48 cursor-pointer visual-showcase-item"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setShowPinterestGallery(true);
                   }}
-                  style={{ 
+                  style={{
                     touchAction: 'manipulation',
                     userSelect: 'none',
                     WebkitUserSelect: 'none',
@@ -840,14 +857,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="about-card p-0 overflow-hidden relative visual-showcase-item" onMouseEnter={() => handleMouseEnter("button")} onMouseLeave={handleMouseLeave}>
-                <div 
-                  className="relative w-full h-48 cursor-pointer visual-showcase-item" 
+                <div
+                  className="relative w-full h-48 cursor-pointer visual-showcase-item"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setShowPinterestGallery(true);
                   }}
-                  style={{ 
+                  style={{
                     touchAction: 'manipulation',
                     userSelect: 'none',
                     WebkitUserSelect: 'none',
@@ -867,14 +884,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="about-card p-0 overflow-hidden relative visual-showcase-item" onMouseEnter={() => handleMouseEnter("button")} onMouseLeave={handleMouseLeave}>
-                <div 
-                  className="relative w-full h-48 cursor-pointer visual-showcase-item" 
+                <div
+                  className="relative w-full h-48 cursor-pointer visual-showcase-item"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setShowPinterestGallery(true);
                   }}
-                  style={{ 
+                  style={{
                     touchAction: 'manipulation',
                     userSelect: 'none',
                     WebkitUserSelect: 'none',
@@ -899,223 +916,6 @@ export default function Home() {
               <p className="text-white/70" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
                 Experience architectural visualization like never before—crafted with passion, innovation, and an unwavering commitment to excellence.
               </p>
-            </div>
-          </div>
-        </motion.section>
-      ),
-    },
-    {
-      id: 'contact',
-      content: (
-        <motion.section
-          initial="hidden"
-          animate="visible"
-          variants={fadeInUp}
-          className="section container-wide"
-        >
-          <div className="glass-morphism p-8 mb-10">
-            <h2 className="section-title" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-              Contact Us
-            </h2>
-            <p className="section-description" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-              Drop us a line or two, we are open for creative minds and collaborations!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-7">
-              <div className="glass-morphism p-8">
-                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                  <div>
-                    <label htmlFor="name" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
-                      placeholder="John Doe"
-                      onMouseEnter={() => handleMouseEnter("")}
-                      onMouseLeave={handleMouseLeave}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                      Your Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
-                      placeholder="name@example.com"
-                      onMouseEnter={() => handleMouseEnter("")}
-                      onMouseLeave={handleMouseLeave}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
-                      placeholder="How can we help?"
-                      onMouseEnter={() => handleMouseEnter("")}
-                      onMouseLeave={handleMouseLeave}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                      Your message
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={6}
-                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
-                      placeholder="Let us know how we can help you..."
-                      onMouseEnter={() => handleMouseEnter("")}
-                      onMouseLeave={handleMouseLeave}
-                    ></textarea>
-                  </div>
-                  <motion.button
-                    className="glass-button px-8 py-3 bg-emerald-500/20 hover:bg-emerald-500/30"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const name = (document.getElementById('name') as HTMLInputElement)?.value || '';
-                      const email = (document.getElementById('email') as HTMLInputElement)?.value || '';
-                      const subject = (document.getElementById('subject') as HTMLInputElement)?.value || '';
-                      const message = (document.getElementById('message') as HTMLTextAreaElement)?.value || '';
-                      
-                      const mailtoLink = `mailto:flik.in.info@gmail.com?subject=${encodeURIComponent(subject || 'Contact Form Submission')}&body=${encodeURIComponent(
-                        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-                      )}`;
-                      
-                      window.location.href = mailtoLink;
-                    }}
-                  >
-                    Send Message
-                  </motion.button>
-                </form>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="glass-morphism p-8 h-full">
-                <h3 className="text-2xl font-medium mb-6" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                  Get in Touch
-                </h3>
-
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4"
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="bg-emerald-500/20 p-3 rounded-lg mt-1">
-                      <svg className="w-5 h-5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium mb-1">Our Location</h4>
-                      <p className="text-white/70 text-sm">
-                        Andheri East, Mumbai<br />
-                        Maharashtra, India
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4"
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="bg-blue-500/20 p-3 rounded-lg mt-1">
-                      <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium mb-1">Email Us</h4>
-                      <p className="text-white/70 text-sm">
-                        flik.in.info@gmail.com
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4"
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="bg-purple-500/20 p-3 rounded-lg mt-1">
-                      <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium mb-1">Call Us</h4>
-                      <p className="text-white/70 text-sm">
-                        +1 (555) 123-4567
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <h4 className="text-lg font-medium mb-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                    Follow Us
-                  </h4>
-                  <div className="flex gap-4">
-                    <a
-                      href="#"
-                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
-                      onMouseEnter={() => handleMouseEnter("button")}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="https://instagram.com/_flik.in_"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
-                      onMouseEnter={() => handleMouseEnter("button")}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                      </svg>
-                    </a>
-                    <a
-                      href="#"
-                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
-                      onMouseEnter={() => handleMouseEnter("button")}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-8 text-center text-white/50 text-sm">
-            <div onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-              <p>© 2023 Flik Visuals. All rights reserved.</p>
-            </div>
-            <div className="flex gap-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Cookies</a>
             </div>
           </div>
         </motion.section>
@@ -1290,23 +1090,200 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </motion.section>
+      ),
+    },
+    {
+      id: 'contact',
+      content: (
+        <motion.section
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="section container-wide"
+        >
+          <div className="glass-morphism p-8 pb-2 mb-10">
+            <h2 className="section-title" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+              Contact Us
+            </h2>
+            <p className="section-description" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+              Drop us a line or two, we are open for creative minds and collaborations!
+            </p>
+          </div>
 
-          <div className="text-center mt-12">
-              <motion.button
-                className="glass-button px-8 py-3 bg-emerald-500/20 hover:bg-emerald-500/30"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                onClick={() => {
-                  const contactSection = document.getElementById('contact');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                onMouseEnter={() => handleMouseEnter("button")}
-                onMouseLeave={handleMouseLeave}
-              >
-              Share Your Experience
-              </motion.button>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-7">
+              <div className="glass-morphism p-8">
+                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                  <div>
+                    <label htmlFor="name" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
+                      placeholder="John Doe"
+                      onMouseEnter={() => handleMouseEnter("")}
+                      onMouseLeave={handleMouseLeave}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+                      Your Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
+                      placeholder="name@example.com"
+                      onMouseEnter={() => handleMouseEnter("")}
+                      onMouseLeave={handleMouseLeave}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="subject" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
+                      placeholder="How can we help?"
+                      onMouseEnter={() => handleMouseEnter("")}
+                      onMouseLeave={handleMouseLeave}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="block mb-2 text-sm font-medium" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+                      Your message
+                    </label>
+                    <textarea
+                      id="message"
+                      rows={6}
+                      className="bg-black/40 border border-gray-700/50 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3"
+                      placeholder="Let us know how we can help you..."
+                      onMouseEnter={() => handleMouseEnter("")}
+                      onMouseLeave={handleMouseLeave}
+                    ></textarea>
+                  </div>
+                  <motion.button
+                    className="glass-button px-8 py-3 bg-emerald-500/20 hover:bg-emerald-500/30"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                    onMouseEnter={() => handleMouseEnter("button")}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const name = (document.getElementById('name') as HTMLInputElement)?.value || '';
+                      const email = (document.getElementById('email') as HTMLInputElement)?.value || '';
+                      const subject = (document.getElementById('subject') as HTMLInputElement)?.value || '';
+                      const message = (document.getElementById('message') as HTMLTextAreaElement)?.value || '';
+
+                      const mailtoLink = `mailto:flik.in.info@gmail.com?subject=${encodeURIComponent(subject || 'Contact Form Submission')}&body=${encodeURIComponent(
+                        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+                      )}`;
+
+                      window.location.href = mailtoLink;
+                    }}
+                  >
+                    Send Message
+                  </motion.button>
+                </form>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="glass-morphism p-8 h-full">
+                <h3 className="text-2xl font-medium mb-6" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+                  Get in Touch
+                </h3>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4"
+                    onMouseEnter={() => handleMouseEnter("button")}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="bg-emerald-500/20 p-3 rounded-lg mt-1">
+                      <svg className="w-5 h-5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium mb-1">Our Location</h4>
+                      <p className="text-white/70 text-sm">
+                        Andheri East, Mumbai<br />
+                        Maharashtra, India
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4"
+                    onMouseEnter={() => handleMouseEnter("button")}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    <div className="bg-blue-500/20 p-3 rounded-lg mt-1">
+                      <svg className="w-5 h-5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-medium mb-1">Email Us</h4>
+                      <p className="text-white/70 text-sm">
+                        flik.in.info@gmail.com
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4"
+                    onMouseEnter={() => handleMouseEnter("button")}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <h4 className="text-lg font-medium mb-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
+                    Follow Us
+                  </h4>
+                  <div className="flex gap-4">
+                    <a
+                      href="#"
+                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
+                      onMouseEnter={() => handleMouseEnter("button")}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://instagram.com/_flik.in_"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
+                      onMouseEnter={() => handleMouseEnter("button")}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="#"
+                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
+                      onMouseEnter={() => handleMouseEnter("button")}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.section>
       ),
@@ -1331,7 +1308,7 @@ export default function Home() {
     const initParticles = () => {
       particlesRef.current = [];
       const particleCount = Math.floor(window.innerWidth / 10); // Adjust particle density
-      
+
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
@@ -1347,9 +1324,9 @@ export default function Home() {
     // Animation loop
     const animate = () => {
       if (!ctx || !canvas) return;
-      
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       particlesRef.current.forEach((particle, index) => {
         // Simple animation without mouse interaction
         particle.x += particle.vx;
@@ -1362,20 +1339,20 @@ export default function Home() {
         if (particle.y <= 0 || particle.y >= canvas.height) {
           particle.vy *= -1;
         }
-        
+
         // Draw particle
         ctx.fillStyle = particle.color;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
-        
+
         // Connect nearby particles
         for (let j = index + 1; j < particlesRef.current.length; j++) {
           const otherParticle = particlesRef.current[j];
           const dx = particle.x - otherParticle.x;
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance < 80) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(16, 185, 129, ${0.1 * (1 - distance / 80)})`; // Fade with distance
@@ -1386,7 +1363,7 @@ export default function Home() {
           }
         }
       });
-      
+
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
@@ -1413,9 +1390,9 @@ export default function Home() {
     const detectDevice = () => {
       const userAgent = navigator.userAgent;
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      const isTablet = /iPad|Android(?=.*\bMobile\b)(?=.*\bTablet\b)|Android(?=.*\bTablet\b)/i.test(userAgent) || 
-                      (window.innerWidth >= 768 && window.innerWidth <= 1024);
-      
+      const isTablet = /iPad|Android(?=.*\bMobile\b)(?=.*\bTablet\b)|Android(?=.*\bTablet\b)/i.test(userAgent) ||
+        (window.innerWidth >= 768 && window.innerWidth <= 1024);
+
       if (isMobile && !isTablet) {
         setDeviceType('mobile');
         setCursorVisible(false);
@@ -1430,7 +1407,7 @@ export default function Home() {
 
     detectDevice();
     window.addEventListener('resize', detectDevice);
-    
+
     return () => {
       window.removeEventListener('resize', detectDevice);
     };
@@ -1440,33 +1417,33 @@ export default function Home() {
   return (
     <div className="relative">
       {/* Interactive Particle Background */}
-      <canvas 
-        ref={canvasRef} 
+      <canvas
+        ref={canvasRef}
         className="fixed inset-0 z-0 pointer-events-none"
       />
 
       {/* Background Effects - Lightened Further */}
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.2),rgba(15,40,35,0.85))]" />
-      
+
       {/* Animated Glass Background Effect */}
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-emerald-500/20" />
-        
+
         {/* Animated Glass Orbs - Lightened */}
-        <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] rounded-full bg-emerald-900/20 blur-3xl animate-pulse" 
-             style={{ animationDuration: '15s' }} />
-        <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] rounded-full bg-emerald-600/20 blur-3xl animate-pulse" 
-             style={{ animationDuration: '12s', animationDelay: '2s' }} />
-        <div className="absolute top-3/4 right-1/3 w-[20vw] h-[20vw] rounded-full bg-emerald-700/20 blur-3xl animate-pulse" 
-             style={{ animationDuration: '20s', animationDelay: '5s' }} />
-             
+        <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] rounded-full bg-emerald-900/20 blur-3xl animate-pulse"
+          style={{ animationDuration: '15s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[30vw] h-[30vw] rounded-full bg-emerald-600/20 blur-3xl animate-pulse"
+          style={{ animationDuration: '12s', animationDelay: '2s' }} />
+        <div className="absolute top-3/4 right-1/3 w-[20vw] h-[20vw] rounded-full bg-emerald-700/20 blur-3xl animate-pulse"
+          style={{ animationDuration: '20s', animationDelay: '5s' }} />
+
         {/* Moving Glass Lines */}
         <div className="absolute inset-0">
           <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent top-1/4 animate-[gradient-x_15s_linear_infinite]"></div>
           <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent top-2/4 animate-[gradient-x_25s_linear_infinite_reverse]"></div>
           <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent top-3/4 animate-[gradient-x_20s_linear_infinite]"></div>
         </div>
-        
+
         {/* Floating 3D Objects */}
         <div className="absolute top-[15%] left-[10%] w-24 h-24 opacity-20 animate-float" style={{ animationDelay: '0s' }}>
           <svg className="w-full h-full text-emerald-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1508,7 +1485,7 @@ export default function Home() {
           </svg>
         </div>
       </div>
-      
+
       {/* Rest of the existing background elements - Lightened */}
       <div className="fixed inset-0">
         <div className="absolute -top-[30%] -right-[20%] w-[80%] h-[80%] rounded-full bg-emerald-900/25 blur-3xl" />
@@ -1530,7 +1507,7 @@ export default function Home() {
             {section.content}
           </div>
         ))}
-        
+
         {/* Footer */}
         <footer className="mt-24 mb-16">
           <div className="glass-morphism p-8">
@@ -1549,39 +1526,43 @@ export default function Home() {
                   Flik is a premier architectural visualization studio creating immersive experiences with cutting-edge technology.
                 </p>
                 <div className="flex gap-4">
-                  <a
-                    href="#"
-                    className="bg-black/40 p-2 rounded-lg hover:bg-emerald-900/40 transition-colors duration-300"
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    className="bg-black/40 p-2 rounded-lg hover:bg-emerald-900/40 transition-colors duration-300"
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="#"
-                    className="bg-black/40 p-2 rounded-lg hover:bg-emerald-900/40 transition-colors duration-300"
-                    onMouseEnter={() => handleMouseEnter("button")}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                  </a>
+                  <div className="flex gap-4">
+                    <a
+                      href="#"
+                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
+                      onMouseEnter={() => handleMouseEnter("button")}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="https://instagram.com/_flik.in_"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
+                      onMouseEnter={() => handleMouseEnter("button")}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                      </svg>
+                    </a>
+                    <a
+                      href="#"
+                      className="bg-black/40 p-3 rounded-lg hover:bg-gray-700/40 transition-colors duration-300"
+                      onMouseEnter={() => handleMouseEnter("button")}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-medium mb-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
                   Services
@@ -1593,7 +1574,7 @@ export default function Home() {
                   <li><a href="#services" className="hover:text-emerald-300 transition-colors" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>Real-time Interactive Experiences</a></li>
                 </ul>
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-medium mb-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
                   Company
@@ -1605,7 +1586,7 @@ export default function Home() {
                   <li><a href="#" className="hover:text-emerald-300 transition-colors" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>Blog</a></li>
                 </ul>
               </div>
-              
+
               <div>
                 <h4 className="text-lg font-medium mb-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
                   Contact
@@ -1616,27 +1597,24 @@ export default function Home() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span>123 Design Studio, Creative District<br />San Francisco, CA 94103</span>
+                    <span>Andheri East, Mumbai
+                      Maharashtra, India</span>
                   </li>
                   <li className="flex items-start gap-3" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
                     <svg className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <span>info@flikvisuals.com</span>
-                  </li>
-                  <li className="flex items-start gap-3" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                    <svg className="w-4 h-4 text-emerald-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <span>+1 (555) 123-4567</span>
+                    <a href="mailto:flik.in.info@gmail.com" className="hover:text-emerald-400 transition-colors">
+                      flik.in.info@gmail.com
+                    </a>
                   </li>
                 </ul>
               </div>
             </div>
-            
+
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-white/50" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                © {new Date().getFullYear()} Flik Visuals. All rights reserved.
+                © {new Date().getFullYear()} Flik. All rights reserved.
               </p>
               <div className="flex gap-6 text-sm text-white/50">
                 <a href="#" className="hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>Privacy Policy</a>
@@ -1650,14 +1628,14 @@ export default function Home() {
 
       {/* VR Modal */}
       <Suspense fallback={<div>Loading...</div>}>
-      <VRModal
-        showVRModal={showVRModal}
-        setShowVRModal={setShowVRModal}
-        panoramaPosition={panoramaPosition}
-        setPanoramaPosition={setPanoramaPosition}
-        zoom={zoom}
-        setZoom={setZoom}
-      />
+        <VRModal
+          showVRModal={showVRModal}
+          setShowVRModal={setShowVRModal}
+          panoramaPosition={panoramaPosition}
+          setPanoramaPosition={setPanoramaPosition}
+          zoom={zoom}
+          setZoom={setZoom}
+        />
       </Suspense>
 
       {/* Pinterest Gallery */}
@@ -1671,26 +1649,25 @@ export default function Home() {
       {/* Floating bottom navigation - Hidden when VR modal is shown */}
       {!showVRModal && !showPinterestGallery && (
         <div className="fixed bottom-0 left-0 right-0 z-30 flex justify-center pb-4">
-        <div className="bottom-navigation">
+          <div className="bottom-navigation">
             <div className="navbar-container">
-            <div className="navbar-buttons-container">
+              <div className="navbar-buttons-container">
                 {icons.map((iconData, index) => (
-                <button
-                  key={index}
-                                      className={`nav-button ${
-                    clickedIcon === index || (clickedIcon === null && hoveredIcon === index) ? 'active' : ''
-                  }`}
-                  onMouseEnter={() => handleIconHover(index)}
-                  onMouseLeave={() => handleIconHover(null)}
-                  onClick={() => handleIconClick(index)}
-                >
+                  <button
+                    key={index}
+                    className={`nav-button ${clickedIcon === index || (clickedIcon === null && hoveredIcon === index) ? 'active' : ''
+                      }`}
+                    onMouseEnter={() => handleIconHover(index)}
+                    onMouseLeave={() => handleIconHover(null)}
+                    onClick={() => handleIconClick(index)}
+                  >
                     <FontAwesomeIcon
                       icon={iconData.icon}
                       className="nav-button-icon"
                     />
                     <span className="nav-button-label">{iconData.label}</span>
-                </button>
-              ))}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
