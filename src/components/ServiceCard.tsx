@@ -22,6 +22,7 @@ export const ServiceCard = ({ image, title, description, className = "" }: Servi
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
           loading="lazy"
+          fetchPriority="low"
         />
       </div>
       <h3 className={`${responsiveText.cardTitle} font-medium mb-1 md:mb-2`} {...getHoverProps("text")}>

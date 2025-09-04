@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Particle {
   x: number;
@@ -19,9 +19,15 @@ export default function ParticleBackground({ className = "fixed inset-0 z-0 poin
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure component only renders on client side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!isClient || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -82,19 +88,28 @@ export default function ParticleBackground({ className = "fixed inset-0 z-0 poin
       return nearbyParticles;
     };
 
-    // Initialize particles
+    // Initialize particles with deterministic fallback
     const initParticles = () => {
       particlesRef.current = [];
-      const particleCount = Math.floor(window.innerWidth / 10); // Adjust particle density
+      const particleCount = Math.floor((canvas.width || 1920) / 10); // Adjust particle density with fallback
 
       for (let i = 0; i < particleCount; i++) {
+        // Use seeded random for consistent initial state
+        const seed = i * 0.618033988749; // Golden ratio for better distribution
+        const x = ((seed * 9301 + 49297) % 233280) / 233280;
+        const y = ((seed * 9301 + 49297 + i) % 233280) / 233280;
+        const size = ((seed * 9301 + 49297 + i * 2) % 233280) / 233280;
+        const vx = ((seed * 9301 + 49297 + i * 3) % 233280) / 233280;
+        const vy = ((seed * 9301 + 49297 + i * 4) % 233280) / 233280;
+        const alpha = ((seed * 9301 + 49297 + i * 5) % 233280) / 233280;
+        
         particlesRef.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.5,
-          vx: Math.random() * 0.5 - 0.25,
-          vy: Math.random() * 0.5 - 0.25,
-          color: `rgba(16, 185, 129, ${Math.random() * 0.3 + 0.1})`,
+          x: x * canvas.width,
+          y: y * canvas.height,
+          size: size * 1.5 + 0.5,
+          vx: vx * 0.5 - 0.25,
+          vy: vy * 0.5 - 0.25,
+          color: `rgba(16, 185, 129, ${alpha * 0.3 + 0.1})`,
         });
       }
     };
@@ -186,8 +201,10 @@ export default function ParticleBackground({ className = "fixed inset-0 z-0 poin
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, [isClient]);
 
+  // Always render canvas to prevent hydration mismatch
+  // The canvas will only be initialized after client-side hydration
   return (
     <canvas
       ref={canvasRef}

@@ -38,6 +38,7 @@ export const ProjectCard = ({
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           loading="lazy"
+          fetchPriority="low"
         />
         <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 bg-gradient-to-t from-black/80 to-transparent">
           <h3 className={`${responsiveText.subheading} font-medium text-white`} {...getHoverProps("text")}>

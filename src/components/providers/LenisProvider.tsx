@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lenis from 'lenis';
 
 interface LenisProviderProps {
@@ -9,10 +9,20 @@ interface LenisProviderProps {
 
 export default function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on client side before accessing browser APIs
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+    
     // Check if device is desktop/laptop (not mobile/tablet)
     const isDesktop = () => {
+      if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
+      
       const userAgent = navigator.userAgent.toLowerCase();
       const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
       const isTablet = /ipad|android(?!.*mobile)/i.test(userAgent) || 
@@ -23,15 +33,15 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     // Only initialize Lenis on desktop devices
     if (isDesktop()) {
       lenisRef.current = new Lenis({
-        duration: 1.2,
+        duration: 1.0,
         easing: (t) => {
-          // Smooth ease-in-out with gentle tails
-          return t < 0.5 
-            ? 4 * t * t * t 
-            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          // Smoother ease-in-out with faster start/end and gentle middle
+          return t < 0.5
+            ? 2 * t * t * (3 - 2 * t)
+            : 1 - 2 * (1 - t) * (1 - t) * (3 - 2 * (1 - t));
         },
         orientation: 'vertical',
-        smoothWheel: true,
+        smoothWheel: false,
       });
 
       // Add lenis class to html element
@@ -52,14 +62,14 @@ export default function LenisProvider({ children }: LenisProviderProps) {
         document.documentElement.classList.remove('lenis');
       }
     };
-  }, []);
+  }, [isClient]);
 
   // Expose lenis instance globally for navigation
   useEffect(() => {
-    if (lenisRef.current) {
+    if (isClient && lenisRef.current) {
       (window as any).lenis = lenisRef.current;
     }
-  }, []);
+  }, [isClient]);
 
   return <>{children}</>;
 }
