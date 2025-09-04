@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faFolder, faUser, faEnvelope, faVrCardboard, faStar } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
 import Cursor from '@/components/Cursor';
+import ParticleBackground from '@/components/ParticleBackground';
 import { useHover } from '@/hooks/useHover';
 import { HomeSection } from '@/components/sections/HomeSection';
 import { PortfolioSection } from '@/components/sections/PortfolioSection';
@@ -32,17 +33,6 @@ export default function Home() {
   const [panoramaPosition, setPanoramaPosition] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
-  
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Array<{
-    x: number;
-    y: number;
-    size: number;
-    vx: number;
-    vy: number;
-    color: string;
-  }>>([]);
-  const animationFrameRef = useRef<number | null>(null);
 
   // Use the new hover hook
   const { handleMouseEnter, handleMouseLeave} = useHover();
@@ -354,100 +344,7 @@ export default function Home() {
     },
   ];
 
-  // Particle animation effect
-  useEffect(() => {
-    if (!canvasRef.current) return;
 
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Set canvas size
-    const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    // Initialize particles
-    const initParticles = () => {
-      particlesRef.current = [];
-      const particleCount = Math.floor(window.innerWidth / 10); // Adjust particle density
-
-      for (let i = 0; i < particleCount; i++) {
-        particlesRef.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.5,
-          vx: Math.random() * 0.5 - 0.25,
-          vy: Math.random() * 0.5 - 0.25,
-          color: `rgba(16, 185, 129, ${Math.random() * 0.3 + 0.1})`,
-        });
-      }
-    };
-
-    // Animation loop
-    const animate = () => {
-      if (!ctx || !canvas) return;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particlesRef.current.forEach((particle, index) => {
-        // Simple animation without mouse interaction
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Bounce off edges
-        if (particle.x <= 0 || particle.x >= canvas.width) {
-          particle.vx *= -1;
-        }
-        if (particle.y <= 0 || particle.y >= canvas.height) {
-          particle.vy *= -1;
-        }
-
-        // Draw particle
-        ctx.fillStyle = particle.color;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Connect nearby particles
-        for (let j = index + 1; j < particlesRef.current.length; j++) {
-          const otherParticle = particlesRef.current[j];
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 80) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(16, 185, 129, ${0.1 * (1 - distance / 80)})`; // Fade with distance
-            ctx.lineWidth = 0.2;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
-          }
-        }
-      });
-
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    // Set up and start animation
-    setCanvasSize();
-    initParticles();
-    animate();
-    window.addEventListener('resize', () => {
-      setCanvasSize();
-      initParticles();
-    });
-
-    // Clean up
-    return () => {
-      window.removeEventListener('resize', setCanvasSize);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
-    };
-  }, []);
 
   // Device detection and cursor management
   useEffect(() => {
@@ -482,10 +379,7 @@ export default function Home() {
     <LenisProvider>
       <div className="relative">
       {/* Interactive Particle Background */}
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 z-0 pointer-events-none"
-      />
+      <ParticleBackground />
 
       {/* Background Effects - Lightened Further */}
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.2),rgba(15,40,35,0.85))]" />
