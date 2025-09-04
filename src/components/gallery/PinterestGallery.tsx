@@ -152,6 +152,7 @@ export const PinterestGallery: React.FC<PinterestGalleryProps> = ({ isOpen, onCl
                       className="w-full h-auto object-cover"
                       style={{ aspectRatio: 'auto' }}
                       loading="lazy"
+                      fetchPriority="low"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -190,6 +191,8 @@ export const PinterestGallery: React.FC<PinterestGalleryProps> = ({ isOpen, onCl
                         height: `${image.height}px`,
                         aspectRatio: 'auto'
                       }}
+                      loading="lazy"
+                      fetchPriority="low"
                     />
                     {/* Gradient overlay on hover/tap */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 rounded-lg" />
@@ -236,6 +239,8 @@ export const PinterestGallery: React.FC<PinterestGalleryProps> = ({ isOpen, onCl
                   width={1200}
                   height={800}
                   className="w-full h-auto max-h-[90vh] object-contain rounded-lg"
+                  loading="lazy"
+                  fetchPriority="high"
                 />
                 <button
                   onClick={closeModal}

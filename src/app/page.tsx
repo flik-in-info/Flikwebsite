@@ -33,6 +33,7 @@ export default function Home() {
   const [panoramaPosition, setPanoramaPosition] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
 
   // Use the new hover hook
   const { handleMouseEnter, handleMouseLeave} = useHover();
@@ -103,9 +104,11 @@ export default function Home() {
     };
   }, []);
 
-  // Device detection and cursor visibility
-  useEffect(() => {
+  // Device detection and cursor visibility - consolidated
+  useEffect(()=> {
     const detectDevice = () => {
+      if (typeof window === 'undefined') return;
+      
       const userAgent = navigator.userAgent;
       const screenWidth = window.innerWidth;
 
@@ -126,7 +129,9 @@ export default function Home() {
       }
     };
 
+    // Only run on client side
     detectDevice();
+    setCurrentYear(new Date().getFullYear());
     window.addEventListener('resize', detectDevice);
 
     return () => {
@@ -346,33 +351,7 @@ export default function Home() {
 
 
 
-  // Device detection and cursor management
-  useEffect(() => {
-    const detectDevice = () => {
-      const userAgent = navigator.userAgent;
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      const isTablet = /iPad|Android(?=.*\bMobile\b)(?=.*\bTablet\b)/i.test(userAgent) ||
-        (window.innerWidth >= 768 && window.innerWidth <= 1024);
-
-      if (isMobile && !isTablet) {
-        setDeviceType('mobile');
-        setCursorVisible(false);
-      } else if (isTablet) {
-        setDeviceType('tablet');
-        setCursorVisible(false); // Default to hidden for tablets
-      } else {
-        setDeviceType('desktop');
-        setCursorVisible(true);
-      }
-    };
-
-    detectDevice();
-    window.addEventListener('resize', detectDevice);
-
-    return () => {
-      window.removeEventListener('resize', detectDevice);
-    };
-  }, []);
+  // Duplicate device detection removed - consolidated above
 
 
   return (
@@ -479,6 +458,7 @@ export default function Home() {
                     height={48}
                     className="object-contain"
                     loading="lazy"
+                    fetchPriority="low"
                   />
                 </div>
                 <p className="text-white/70 text-sm mb-4" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
@@ -549,7 +529,7 @@ export default function Home() {
 
             <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-white/50" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-                © {new Date().getFullYear()} Flik. All rights reserved.
+                © {currentYear || 2024} Flik. All rights reserved.
               </p>
               <div className="flex gap-6 text-sm text-white/50">
                 <a href="#" className="hover:text-white transition-colors" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>Privacy Policy</a>

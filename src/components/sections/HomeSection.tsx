@@ -108,6 +108,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 66vw"
             priority
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
             <div className="p-4 md:p-8 w-full">
