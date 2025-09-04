@@ -15,6 +15,7 @@ import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { PinterestGallery } from '@/components/gallery/PinterestGallery';
 import { VRModal } from '@/components/modals/VRModal';
 import { Header } from '@/components/layout/Header';
+import LenisProvider from '@/components/providers/LenisProvider';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -167,7 +168,11 @@ export default function Home() {
       if (index < sections.length) {
         const section = document.getElementById(sections[index]);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
+          // Use Lenis for smooth scrolling
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(section);
+    }
           setCurrentSection(index);
         }
       }
@@ -194,7 +199,11 @@ export default function Home() {
     if (sectionIndex >= 0 && sectionIndex < sections.length) {
       const section = document.getElementById(sections[sectionIndex]);
       if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+        // Use Lenis for smooth scrolling
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(section);
+    }
         setCurrentSection(sectionIndex);
         // Don't automatically set clicked icon - only manual navbar clicks should do this
         // Clear hover state when navigating
@@ -246,8 +255,15 @@ export default function Home() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Use Lenis scroll event if available, fallback to window scroll
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.on('scroll', handleScroll);
+      return () => lenis.off('scroll', handleScroll);
+    } else {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, [clickedIcon]);
 
   // Add keyboard event listeners
@@ -255,6 +271,7 @@ export default function Home() {
     window.addEventListener('keydown', handleKeyNavigation);
     return () => window.removeEventListener('keydown', handleKeyNavigation);
   }, [handleKeyNavigation]);
+
 
   // Add click handler to clear navbar clicked state when clicking outside navbar
   useEffect(() => {
@@ -462,7 +479,8 @@ export default function Home() {
 
 
   return (
-    <div className="relative">
+    <LenisProvider>
+      <div className="relative">
       {/* Interactive Particle Background */}
       <canvas
         ref={canvasRef}
@@ -696,6 +714,7 @@ export default function Home() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </LenisProvider>
   );
 }

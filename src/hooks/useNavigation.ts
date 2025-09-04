@@ -22,7 +22,12 @@ export const useNavigation = () => {
       if (index < sections.length) {
         const section = document.getElementById(sections[index]);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
+          const lenis = (window as any).lenis;
+          if (lenis) {
+            lenis.scrollTo(section);
+          } else {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
           setCurrentSection(index);
         }
       }
@@ -45,7 +50,12 @@ export const useNavigation = () => {
     if (sectionIndex >= 0 && sectionIndex < sections.length) {
       const section = document.getElementById(sections[sectionIndex]);
       if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+        const lenis = (window as any).lenis;
+        if (lenis) {
+          lenis.scrollTo(section);
+        } else {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
         setCurrentSection(sectionIndex);
         setHoveredIcon(null);
       }
@@ -89,8 +99,15 @@ export const useNavigation = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Use Lenis scroll event if available, fallback to window scroll
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.on('scroll', handleScroll);
+      return () => lenis.off('scroll', handleScroll);
+    } else {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, [clickedIcon]);
 
   useEffect(() => {

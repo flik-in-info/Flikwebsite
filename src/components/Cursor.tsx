@@ -163,7 +163,14 @@ const Cursor: React.FC<CursorProps> = ({
 
     // Listen for mousemove and scroll events
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Use Lenis scroll event if available, fallback to window scroll
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.on('scroll', handleScroll);
+    } else {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+    }
 
     // Set up a mutation observer to handle dynamically added elements
     const observer = new MutationObserver(() => {
@@ -183,7 +190,15 @@ const Cursor: React.FC<CursorProps> = ({
     // Clean up all event listeners on unmount
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
+      
+      // Clean up Lenis or window scroll listener
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.off('scroll', handleScroll);
+      } else {
+        window.removeEventListener('scroll', handleScroll);
+      }
+      
       observer.disconnect();
       cleanup();
       document.head.removeChild(styleTag);
@@ -235,4 +250,4 @@ const Cursor: React.FC<CursorProps> = ({
   );
 };
 
-export default Cursor; 
+export default Cursor;
