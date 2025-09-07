@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import ShineEffect from './ShineEffect';
+import ShineEffect from '@/components/ShineEffect';
 import Image from 'next/image';
 
 interface HeaderProps {
@@ -9,16 +9,33 @@ interface HeaderProps {
   onMouseLeave: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
-  const [currentTime, setCurrentTime] = useState<Date>(() => new Date());
+export const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
+  const [currentTime, setCurrentTime] = useState<string>('--:--');
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on client side before initializing time
+  useEffect(() => {
+    setIsClient(true);
+    const now = new Date();
+    setCurrentTime(now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    }));
+  }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+    
     const timer = setInterval(() => {
-      setCurrentTime(new Date());
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }));
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isClient]);
 
   return (
     <header className="relative mb-8 md:mb-12">
@@ -40,6 +57,8 @@ const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
                 width={100}
                 height={40}
                 className="object-contain"
+                loading="lazy"
+                fetchPriority="low"
               />
             </div>
           </div>
@@ -98,10 +117,7 @@ const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
                   onMouseEnter={() => onMouseEnter("text")}
                   onMouseLeave={onMouseLeave}
                 >
-                  {currentTime.toLocaleTimeString("en-US", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {currentTime}
                 </p>
               </div>
             </div>
@@ -145,6 +161,8 @@ const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
                   width={120}
                   height={48}
                   className="object-contain"
+                  loading="lazy"
+                  fetchPriority="low"
                 />
               </div>
             </div>
@@ -200,10 +218,7 @@ const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
                     onMouseEnter={() => onMouseEnter("text")}
                     onMouseLeave={onMouseLeave}
                   >
-                    {currentTime.toLocaleTimeString("en-US", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
+                    {currentTime}
                   </p>
                 </div>
               </div>
@@ -238,4 +253,4 @@ const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) => {
   );
 };
 
-export default Header; 
+export default Header;

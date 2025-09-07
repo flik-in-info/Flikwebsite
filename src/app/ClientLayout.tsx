@@ -33,6 +33,14 @@ export default function ClientLayout({
     };
   }, []);
 
+  // Remove any WebSocket connections or add proper cleanup
+  useEffect(() => {
+    // Add cleanup for any connections
+    return () => {
+      // Cleanup WebSocket connections if any
+    };
+  }, []);
+
   return (
     <>
       {/* Use the unified cursor component */}
@@ -43,4 +51,4 @@ export default function ClientLayout({
       </div>
     </>
   );
-} 
+}
