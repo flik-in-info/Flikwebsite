@@ -165,7 +165,7 @@ const Cursor: React.FC<CursorProps> = ({
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     
     // Use Lenis scroll event if available, fallback to window scroll
-    const lenis = (window as any).lenis;
+    const lenis = (window as { lenis?: { on: (event: string, callback: () => void) => void; off: (event: string, callback: () => void) => void } }).lenis;
     if (lenis) {
       lenis.on('scroll', handleScroll);
     } else {
@@ -192,7 +192,7 @@ const Cursor: React.FC<CursorProps> = ({
       window.removeEventListener('mousemove', handleMouseMove);
       
       // Clean up Lenis or window scroll listener
-      const lenis = (window as any).lenis;
+      const lenis = (window as { lenis?: { on: (event: string, callback: () => void) => void; off: (event: string, callback: () => void) => void } }).lenis;
       if (lenis) {
         lenis.off('scroll', handleScroll);
       } else {

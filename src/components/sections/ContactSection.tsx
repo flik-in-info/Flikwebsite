@@ -1,9 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { responsiveText } from '../../utils/theme';
 
 interface ContactSectionProps {
-  fadeInUp: any;
+  fadeInUp: { hidden: { opacity: number; y: number }; visible: { opacity: number; y: number } };
   handleMouseEnter: (type: string) => void;
   handleMouseLeave: () => void;
 }

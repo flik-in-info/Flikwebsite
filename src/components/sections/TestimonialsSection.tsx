@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 interface TestimonialsSectionProps {
-  fadeInUp: any;
+  fadeInUp: { hidden: { opacity: number; y: number }; visible: { opacity: number; y: number } };
   handleMouseEnter: (type: string) => void;
   handleMouseLeave: () => void;
 }
@@ -40,7 +40,7 @@ const testimonials = [
     initials: "SN",
     bgColor: "bg-emerald-500/20",
     textColor: "text-emerald-300",
-    quote: "Flik's architectural visualizations helped us secure major clients. The photorealistic renders and interactive experiences set us apart from the competition. Truly professional work!"
+    quote: "Flik&apos;s architectural visualizations helped us secure major clients. The photorealistic renders and interactive experiences set us apart from the competition. Truly professional work!"
   },
   {
     name: "Vikram Gupta",
@@ -56,7 +56,7 @@ const testimonials = [
     initials: "AM",
     bgColor: "bg-orange-500/20",
     textColor: "text-orange-300",
-    quote: "Flik's work speaks for itself. The quality of their architectural visualizations is world-class. They've helped us present our projects in the most compelling way possible."
+    quote: "Flik&apos;s work speaks for itself. The quality of their architectural visualizations is world-class. They&apos;ve helped us present our projects in the most compelling way possible."
   }
 ];
 
@@ -77,7 +77,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
           Client Testimonials
         </h2>
         <p className="section-description" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-          Don't just take our word for it. Here's what our clients have to say about working with Flik.
+          Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with Flik.
         </p>
       </div>
 
@@ -90,7 +90,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
               ))}
             </div>
             <p className="text-white/80 mb-6 italic text-sm" onMouseEnter={() => handleMouseEnter("text")} onMouseLeave={handleMouseLeave}>
-              &ldquo;{testimonial.quote}&rdquo;
+              &quot;{testimonial.quote}&quot;
             </p>
             <div className="flex items-center gap-3">
               <div className={`w-10 h-10 ${testimonial.bgColor} rounded-full flex items-center justify-center`}>

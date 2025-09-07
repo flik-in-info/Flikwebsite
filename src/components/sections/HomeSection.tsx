@@ -6,8 +6,14 @@ import { images } from '../../utils/assets';
 import { responsiveText } from '../../utils/theme';
 
 interface HomeSectionProps {
-  fadeInUp: any;
-  featureCards: any[];
+  fadeInUp: { hidden: { opacity: number; y: number }; visible: { opacity: number; y: number } };
+  featureCards: {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+    iconBgColor: string;
+    iconTextColor: string;
+  }[];
   handleMouseEnter: (type: string) => void;
   handleMouseLeave: () => void;
   setShowVRModal: (show: boolean) => void;
