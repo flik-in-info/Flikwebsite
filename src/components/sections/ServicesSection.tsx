@@ -5,7 +5,7 @@ import { images } from '../../utils/assets';
 import { responsiveText } from '../../utils/theme';
 
 interface ServicesSectionProps {
-  fadeInUp: any;
+  fadeInUp: { hidden: { opacity: number; y: number }; visible: { opacity: number; y: number } };
   handleMouseEnter: (type: string) => void;
   handleMouseLeave: () => void;
 }

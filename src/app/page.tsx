@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef, Suspense } from 'react';
+import { useState, useCallback, useEffect, Suspense } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faFolder, faUser, faEnvelope, faVrCardboard, faStar } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
@@ -29,10 +29,9 @@ export default function Home() {
   const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
   const [clickedIcon, setClickedIcon] = useState<number | null>(null);
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [currentSection, setCurrentSection] = useState(0);
+
   const [panoramaPosition, setPanoramaPosition] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const [currentYear, setCurrentYear] = useState<number | null>(null);
 
   // Use the new hover hook
@@ -118,13 +117,10 @@ export default function Home() {
         (screenWidth >= 768 && screenWidth <= 1024 && isMobile);
 
       if (isMobile && !isTablet) {
-        setDeviceType('mobile');
         setCursorVisible(false); // Hide cursor on mobile
       } else if (isTablet) {
-        setDeviceType('tablet');
         setCursorVisible(false); // Hide cursor on tablet
       } else {
-        setDeviceType('desktop');
         setCursorVisible(true); // Show cursor on desktop
       }
     };
@@ -164,11 +160,11 @@ export default function Home() {
         const section = document.getElementById(sections[index]);
         if (section) {
           // Use Lenis for smooth scrolling
-    const lenis = (window as any).lenis;
+    const lenis = (window as { lenis?: { scrollTo: (element: Element) => void } }).lenis;
     if (lenis) {
       lenis.scrollTo(section);
     }
-          setCurrentSection(index);
+
         }
       }
     }
@@ -195,11 +191,11 @@ export default function Home() {
       const section = document.getElementById(sections[sectionIndex]);
       if (section) {
         // Use Lenis for smooth scrolling
-    const lenis = (window as any).lenis;
+    const lenis = (window as { lenis?: { scrollTo: (element: Element) => void } }).lenis;
     if (lenis) {
       lenis.scrollTo(section);
     }
-        setCurrentSection(sectionIndex);
+
         // Don't automatically set clicked icon - only manual navbar clicks should do this
         // Clear hover state when navigating
         setHoveredIcon(null);
@@ -237,7 +233,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const current = getCurrentSection();
-      setCurrentSection(current);
+
 
       // If user scrolled to a different section than the clicked one, clear the clicked state
       if (clickedIcon !== null && clickedIcon !== current) {
@@ -251,7 +247,7 @@ export default function Home() {
     };
 
     // Use Lenis scroll event if available, fallback to window scroll
-    const lenis = (window as any).lenis;
+    const lenis = (window as { lenis?: { on: (event: string, callback: () => void) => void; off: (event: string, callback: () => void) => void } }).lenis;
     if (lenis) {
       lenis.on('scroll', handleScroll);
       return () => lenis.off('scroll', handleScroll);
