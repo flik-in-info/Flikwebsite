@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FeatureCard } from '../FeatureCard';
@@ -26,14 +26,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
   handleMouseLeave,
   setShowVRModal
 }) => {
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const videoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoadVideo(true);
           observer.disconnect();
         }
       },
@@ -54,51 +52,6 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
       variants={fadeInUp}
       className="section container-wide min-h-[80vh] flex flex-col justify-center px-4 md:px-0"
     >
-      <div className="relative overflow-hidden min-h-[60vh] md:min-h-[70vh] mb-8 md:mb-10 rounded-xl border border-emerald-500/20">
-        {/* Background video */}
-        <div ref={videoRef} className="absolute inset-0 w-full h-full overflow-hidden z-0">
-          {shouldLoadVideo ? (
-            <iframe
-              src="https://player.vimeo.com/video/1099624247?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;controls=0&amp;background=1"
-              className="opacity-80"
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%) scale(1.2)',
-                width: '100%',
-                height: '100%',
-                minWidth: '100%',
-                minHeight: '100%',
-                pointerEvents: 'none'
-              }}
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              title="bg-video"
-              loading="lazy"
-            />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-emerald-900/20 to-black/40 flex items-center justify-center">
-              <div className="text-white/60 text-sm">Loading video...</div>
-            </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-emerald-900/20"></div>
-        </div>
-
-        {/* Content with higher z-index */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full py-10 md:py-16">
-          <motion.div
-            className="w-full max-w-md mx-auto flex justify-center mb-8 md:mb-12"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { delay: 0.2 } }
-            }}
-          >
-            {/* Logo removed by user */}
-          </motion.div>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8 mt-4 md:mt-6">
         {featureCards.map((card, index) => (
           <FeatureCard key={index} {...card} />
