@@ -365,11 +365,30 @@ h1, h2, h3, h4, h5, h6 {
   @apply flex items-center gap-3 text-white/90 text-sm rounded-xl px-6 py-3 border border-white/10 backdrop-blur-xl bg-black/40;
 }
 
-/* Smooth scrolling */
+/* Lenis smooth scrolling setup */
 html {
-  scroll-behavior: smooth;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling {
+  pointer-events: none;
 }
 
 /* Hide scrollbar but keep functionality */
