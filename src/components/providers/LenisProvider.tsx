@@ -65,7 +65,7 @@ export default function LenisProvider({ children }: LenisProviderProps) {
   // Expose lenis instance globally for navigation
   useEffect(() => {
     if (isClient && lenisRef.current) {
-      (window as any).lenis = lenisRef.current;
+      (window as { lenis?: Lenis }).lenis = lenisRef.current;
     }
   }, [isClient]);
 

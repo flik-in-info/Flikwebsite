@@ -1,11 +1,11 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 
 export const useNavigation = () => {
   const [hoveredIcon, setHoveredIcon] = useState<number | null>(null);
   const [clickedIcon, setClickedIcon] = useState<number | null>(null);
   const [currentSection, setCurrentSection] = useState(0);
 
-  const sections = ["home", "portfolio", "services", "about", "contact", "testimonials"];
+  const sections = useMemo(() => ["home", "portfolio", "services", "about", "contact", "testimonials"], []);
 
   const handleIconHover = (index: number | null) => {
     if (clickedIcon === null) {
@@ -22,7 +22,7 @@ export const useNavigation = () => {
       if (index < sections.length) {
         const section = document.getElementById(sections[index]);
         if (section) {
-          const lenis = (window as any).lenis;
+          const lenis = (window as { lenis?: { scrollTo: (element: Element) => void } }).lenis;
           if (lenis) {
             lenis.scrollTo(section);
           } else {
@@ -34,7 +34,7 @@ export const useNavigation = () => {
     }
   };
 
-  const getCurrentSection = () => {
+  const getCurrentSection = useCallback(() => {
     const scrollPosition = window.scrollY + window.innerHeight / 2;
 
     for (let i = sections.length - 1; i >= 0; i--) {
@@ -44,13 +44,13 @@ export const useNavigation = () => {
       }
     }
     return 0;
-  };
+  }, [sections]);
 
-  const navigateToSection = (sectionIndex: number) => {
+  const navigateToSection = useCallback((sectionIndex: number) => {
     if (sectionIndex >= 0 && sectionIndex < sections.length) {
       const section = document.getElementById(sections[sectionIndex]);
       if (section) {
-        const lenis = (window as any).lenis;
+        const lenis = (window as { lenis?: { scrollTo: (element: Element) => void } }).lenis;
         if (lenis) {
           lenis.scrollTo(section);
         } else {
@@ -60,7 +60,7 @@ export const useNavigation = () => {
         setHoveredIcon(null);
       }
     }
-  };
+  }, [sections, setCurrentSection, setHoveredIcon]);
 
   const handleKeyNavigation = useCallback((e: KeyboardEvent) => {
     const activeElement = document.activeElement;
@@ -83,7 +83,7 @@ export const useNavigation = () => {
       const prevSection = (currentIdx - 1 + sections.length) % sections.length;
       navigateToSection(prevSection);
     }
-  }, []);
+  }, [getCurrentSection, navigateToSection, sections.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,7 +100,7 @@ export const useNavigation = () => {
     };
 
     // Use Lenis scroll event if available, fallback to window scroll
-    const lenis = (window as any).lenis;
+    const lenis = (window as { lenis?: { on: (event: string, callback: () => void) => void; off: (event: string, callback: () => void) => void } }).lenis;
     if (lenis) {
       lenis.on('scroll', handleScroll);
       return () => lenis.off('scroll', handleScroll);
@@ -108,7 +108,7 @@ export const useNavigation = () => {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
     }
-  }, [clickedIcon]);
+  }, [clickedIcon, getCurrentSection]);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyNavigation);
