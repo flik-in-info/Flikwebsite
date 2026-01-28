@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ onMouseEnter, onMouseLeave }) =>
   }, [isClient]);
 
   return (
-    <header className="relative mb-8 md:mb-12">
+    <header className="relative">
       <div className="glass-morphism p-4 md:p-8 relative overflow-hidden">
         <ShineEffect />
         
